@@ -1,6 +1,10 @@
 <script setup lang="ts">
-
+import DriversPositionTable from '@/components/DriversPositionTable.vue';
 </script>
 <template>
-  <h1>Todo OK</h1>
+  <div>
+    <h1>Campeonato de pilotos</h1>
+    <DriversPositionTable/>
+  </div>
 </template>
+

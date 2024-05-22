@@ -1,0 +1,11 @@
+export const FERRARI = 'Ferrari';
+export const MCLAREN = 'McLaren';
+export const MERCEDES = 'Mercedes';
+export const RED_BULL = 'Red Bull';
+export const RENAULT = 'Renault';
+export const ALPHATAURI = 'AlphaTauri';
+export const ALFA_ROMEO = 'Alfa Romeo';
+export const ALPINE = 'Alpine';
+export const HAAS = 'Haas';
+export const WILLIAMS = 'Williams';
+export const RACING_POINT = 'Racing Point';

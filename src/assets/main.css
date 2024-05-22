@@ -1,1 +1,11 @@
 @import './base.css';
+
+:root {
+    --max-width: 400px;
+    --bg-color: #00091c;
+    --card-color: #0d3fd5;
+    --card-text-muted-color: #dbe2f9;
+    --card-border-radius: 6px;
+    --card-padding: 6px;
+    --card-list-gap: 6px;
+}
