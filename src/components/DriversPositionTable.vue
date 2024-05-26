@@ -22,7 +22,7 @@ data.value.sort((a, b) => {
 <template>
     <div class="driver-cards__container">
         <DriverCard 
-            v-for="driver, i in data" :key="driver.name" 
+            v-for="driver, i in data" :key="driver.driver.name"
             v-bind="driver" 
             :position="i + 1" 
         />
