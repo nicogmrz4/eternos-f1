@@ -66,7 +66,6 @@ ul > li > a {
 }
 
 ul > li > a:hover {
-  text-decoration: underline;
   opacity: .8;
 
 }
