@@ -2,13 +2,15 @@
 import { ref } from 'vue';
 import teams from '@/static/teamsTable';
 import TeamCard from '@/components/TeamCard.vue';
-import driversTable from '@/static/driversTable';
+import type { DriverStatsInterface } from '@/interfaces/driverStats';
+import { calcDriversPoints } from '@/utils/caclDriversPoints';
 
 const data = ref(teams);
+let driversStats: DriverStatsInterface[] = calcDriversPoints();
 
 // Calculate total points per team
 data.value.map((team: any) => {
-  team.points = driversTable.filter(driverStats => driverStats.driver.team == team.name).reduce((a, b) => a + b.points, 0);
+  team.points = driversStats.filter(driverStats => driverStats.driver.team == team.name).reduce((a, b) => a + b.points, 0);
 });
 
 // Sort teams by points
