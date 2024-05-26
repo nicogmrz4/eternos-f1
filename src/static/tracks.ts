@@ -6,22 +6,22 @@ import { TrackDTO } from "@/dto/trackDTO"
 
 export default <TrackInterface[]> [
     new TrackDTO(
-        'Hungarian Grand Prix',
+        'GP Hungría',
         'Hungaroring',
         'fi fi-hu',
         true,
         hungaryGPResult
     ),
     new TrackDTO(
-        'Belgian Grand Prix',
-        'Circuit de Spa-Francorchamps',
+        'GP Bélgica',
+        'Circuito de Spa-Francorchamps',
         'fi fi-be',
         true,
         belgiumGPResult
     ),
     new TrackDTO(
-        'Dutch Grand Prix',
-        'Circuit Brugge - Kuurne',
+        'GP Holanda',
+        'Circuito de Zandvoort',
         'fi fi-nl',
         false,
         []
