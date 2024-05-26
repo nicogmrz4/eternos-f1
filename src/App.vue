@@ -35,6 +35,7 @@ main {
 
 main > * {
   width: 100%;
+  padding-bottom: 3em;
 }
 
 nav {
