@@ -21,7 +21,10 @@ const router = createRouter({
       name: 'teams',
       component: TeamsChampionshipView
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0, behavior: 'smooth', }
+  },
 })
 
 export default router
