@@ -4,14 +4,14 @@ import { ref, type Ref } from 'vue';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
 import { calcDriversPoints } from '@/utils/caclDriversPoints';
 
-let driverStats: Ref<DriverStatsInterface[]> = ref(calcDriversPoints());
+let driversStats: Ref<DriverStatsInterface[]> = ref(calcDriversPoints());
 </script>
 
 <template>
     <div class="driver-cards__container">
         <DriverCard 
-            v-for="driverStat, i in driverStats" :key="driverStat.driver.id"
-            v-bind="driverStat" 
+            v-for="driverStats, i in driversStats" :key="driverStats.driver.id"
+            v-bind="driverStats" 
             :position="i + 1" 
         />
     </div>
