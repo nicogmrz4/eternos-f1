@@ -26,11 +26,17 @@ main {
   width: 100%;
   margin: 0 auto;
   position: relative;
+  padding-bottom: 3em;
 }
 
 main > * {
   width: 100%;
-  padding-bottom: 3em;
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding-bottom: 5em;
+  }
 }
 
 .router-enter-from {
