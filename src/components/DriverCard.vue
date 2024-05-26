@@ -124,9 +124,9 @@ const showStats = ref(false);
     margin-left: auto;
 }
 
-.driver-card:hover {
+/* .driver-card:hover {
     transform: scale(1.05);
-}
+} */
 
 .v-enter-from {
     max-height: 0;
@@ -134,7 +134,7 @@ const showStats = ref(false);
 }
 
 .v-enter-active {
-    transition: max-height 200ms ease-out, opacity 0.2s ease-out 150ms;
+    transition: max-height 200ms linear, opacity 0.2s ease-out 150ms;
 }
 
 .v-enter-to {
@@ -148,7 +148,7 @@ const showStats = ref(false);
 }
 
 .v-leave-active {
-    transition: max-height 200ms ease-out 150ms, opacity 0.2s ease-out;
+    transition: max-height 200ms linear, opacity 0.2s ease-in;
 }
 
 .v-leave-to {
