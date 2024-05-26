@@ -22,4 +22,6 @@ h1 {
 
 .card-text-muted {
     color: var(--card-text-muted-color);
+    font-size: 12px;
+    font-weight: 100;
 }
