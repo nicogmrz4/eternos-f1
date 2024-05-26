@@ -9,7 +9,9 @@ const props = defineProps({
     points: Number,
     fastLaps: Number,
     position: Number,
-    stats: Boolean
+    podiums: Number,
+    races: Number,
+    wins: Number,
 });
 
 const showStats = ref(false);
@@ -27,20 +29,24 @@ const showStats = ref(false);
         <Transition>
             <div v-if="showStats" class="driver-card__stats">
                 <div class="stat card-text-muted">
-                    <span class="stat__value">6</span>
+                    <span class="stat__value">{{ races }}</span>
                     <span class="stat__label">Carreras</span>
+                </div>                
+                <div class="stat card-text-muted">
+                    <span class="stat__value">{{ wins }}</span>
+                    <span class="stat__label">Victorias</span>
                 </div>
                 <div class="stat card-text-muted">
                     <span class="stat__value">{{ fastLaps }}</span>
                     <span class="stat__label">Vueltas r.</span>
                 </div>
                 <div class="stat card-text-muted">
-                    <span class="stat__value">1</span>
+                    <span class="stat__value">{{ poles }}</span>
                     <span class="stat__label">Poles</span>
                 </div>
                 <div class="stat card-text-muted">
-                    <span class="stat__value">5</span>
-                    <span class="stat__label">Podiums</span>
+                    <span class="stat__value">{{ podiums }}</span>
+                    <span class="stat__label">Podios</span>
                 </div>
             </div>
         </Transition>
