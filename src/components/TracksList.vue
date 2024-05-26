@@ -18,4 +18,8 @@ const data = ref(tracks);
     flex-direction: column;
     gap: var(--card-list-gap);
 }
+
+.tracks-list__container:hover > .track-card:not(:hover) {
+    opacity: .4;
+}
 </style>

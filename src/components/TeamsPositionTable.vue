@@ -30,4 +30,8 @@ data.value.sort((a, b) => {
   flex-direction: column;
   gap: var(--card-list-gap);
 }
+
+.team-cards__container:hover > .team-card:not(:hover) {
+    opacity: .4;
+}
 </style>

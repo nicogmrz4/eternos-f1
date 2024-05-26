@@ -27,6 +27,7 @@ const props = defineProps({
     background-color: var(--card-color);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
 .track-card--raced {
@@ -60,5 +61,9 @@ const props = defineProps({
     font-size: 28px;
     border-radius: 10%;
     border: 2px solid #fff;
+}
+
+.track-card:hover {
+    transform: scale(1.05);
 }
 </style>
