@@ -18,7 +18,7 @@ export const EMMA = new Driver(2, 'https://i.pravatar.cc/150?img=33', 'Emma', FE
 export const MICHAEL = new Driver(3, 'https://i.pravatar.cc/150?img=55', 'Michael', RED_BULL);
 export const SOFIA = new Driver(4, 'https://i.pravatar.cc/150?img=1', 'Sophia', MCLAREN);
 export const WILLIAM = new Driver(5, 'https://i.pravatar.cc/150?img=11', 'William', RENAULT);
-export const OLIVIA = new Driver(6, 'https://i.pravatar.cc/150?img=13', 'Olivia', ALPHATAURI);
+export const OLIVIA = new Driver(6, 'https://i.pravatar.cc/150?img=23', 'Olivia', ALPHATAURI);
 export const JAMES = new Driver(7, 'https://i.pravatar.cc/150?img=12', 'James', RACING_POINT); 
 export const AVA = new Driver(8, 'https://i.pravatar.cc/150?img=27', 'Ava', ALFA_ROMEO);
 export const ALEXANDER = new Driver(9, 'https://i.pravatar.cc/150?img=18', 'Alexander', HAAS);
