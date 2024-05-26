@@ -3,8 +3,8 @@ import TeamsPositionTable from '@/components/TeamsPositionTable.vue';
 </script>
 
 <template>
-    <h1>Campeonato de constructores</h1>
     <div>
+        <h1>Campeonato de constructores</h1>
         <TeamsPositionTable/>
     </div>
 </template>
