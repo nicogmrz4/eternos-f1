@@ -1,36 +1,10 @@
 <script setup lang="ts">
 import DriverCard from '@/components/DriverCard.vue';
 import { ref, type Ref } from 'vue';
-import tracks from '@/static/tracks';
-import { drivers } from '@/static/drivers';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
-import points from '@/static/points';
-import { DriverStatsDTO } from '@/dto/driverStatsDTO';
+import { calcDriversPoints } from '@/utils/caclDriversPoints';
 
-let driverStats: Ref<DriverStatsInterface[]> = ref([]);
-
-// Calc drivers points
-drivers.forEach(driver => {
-    let stats: DriverStatsDTO = new DriverStatsDTO(driver);
-
-    tracks.forEach(track => {
-        if (track.isRaced == false) return;
-        let result = track.result?.find(result => result.driver.id == driver.id);
-        stats.races++;
-        if (points[result!.position -1]) stats.points += points[result!.position -1];
-        if (result!.fastLap) stats.fastLaps++;
-        if (result!.fastLap && result!.position <= 10) stats.points++;
-        if (result!.startingPosition == 1) stats.poles++;
-        if (result!.position == 1) stats.wins++;
-        if (result!.position <= 3) stats.podiums++;
-    });
-
-    driverStats.value.push(stats);
-
-    driverStats.value.sort((a, b) => {
-        return b.points - a.points;
-    });
-});
+let driverStats: Ref<DriverStatsInterface[]> = ref(calcDriversPoints());
 </script>
 
 <template>
