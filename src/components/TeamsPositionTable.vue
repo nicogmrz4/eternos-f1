@@ -33,7 +33,9 @@ data.value.sort((a, b) => {
   gap: var(--card-list-gap);
 }
 
-.team-cards__container:hover > .team-card:not(:hover) {
+@media screen and (min-width: 768px) {
+  .team-cards__container:hover > .team-card:not(:hover) {
     opacity: .4;
+  }
 }
 </style>

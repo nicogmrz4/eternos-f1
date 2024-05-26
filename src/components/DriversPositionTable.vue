@@ -24,7 +24,10 @@ let driversStats: Ref<DriverStatsInterface[]> = ref(calcDriversPoints());
     gap: var(--card-list-gap);
 }
 
-.driver-cards__container:hover > .driver-card:not(:hover) {
-    opacity: .4;
+@media screen and (min-width: 768px) {
+    .driver-cards__container:hover > .driver-card:not(:hover) {
+        opacity: .4;
+    }
 }
+
 </style>
