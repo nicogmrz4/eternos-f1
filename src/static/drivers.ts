@@ -23,13 +23,13 @@ export const JAMES = new Driver(7, 'https://i.pravatar.cc/150?img=12', 'James', 
 export const AVA = new Driver(8, 'https://i.pravatar.cc/150?img=27', 'Ava', ALFA_ROMEO);
 export const ALEXANDER = new Driver(9, 'https://i.pravatar.cc/150?img=18', 'Alexander', HAAS);
 export const MIA = new Driver(10, 'https://i.pravatar.cc/150?img=5', 'Mia', WILLIAMS);
-export const MARCELO = new Driver(11, 'https://i.pravatar.cc/150?img=28', 'Marcelo', MERCEDES);
+export const MARCELO = new Driver(11, 'https://i.pravatar.cc/150?img=38', 'Marcelo', MERCEDES);
 export const JOE = new Driver(12, 'https://i.pravatar.cc/150?img=14', 'Joe', FERRARI);
 export const DANIEL = new Driver(13, 'https://i.pravatar.cc/150?img=13', 'Daniel', RENAULT);
 export const LUIS = new Driver(14, 'https://i.pravatar.cc/150?img=21', 'Luis', ALPHATAURI);
 export const LUCAS = new Driver(15, 'https://i.pravatar.cc/150?img=6', 'Lucas', RACING_POINT);
 export const GABRIEL = new Driver(16, 'https://i.pravatar.cc/150?img=59', 'Gabriel', ALFA_ROMEO);
-export const KATE = new Driver(17, 'https://i.pravatar.cc/150?img=17', 'Kate', HAAS);
+export const KATE = new Driver(17, 'https://i.pravatar.cc/150?img=43', 'Kate', HAAS);
 export const LANDO = new Driver(18, 'https://i.pravatar.cc/150?img=65', 'Lando', WILLIAMS);
 export const LILIAN = new Driver(19, 'https://i.pravatar.cc/150?img=19', 'Lilian', RED_BULL);
 export const IVAN = new Driver(20, 'https://i.pravatar.cc/150?img=35', 'Iván', MCLAREN);
