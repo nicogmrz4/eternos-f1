@@ -30,6 +30,6 @@ export default <Track[]>[
         circuit: 'Circuit Brugge - Kuurne',
         flag: 'fi fi-nl',
         isRaced: false,
-        result: null
+        result: []
     }
 ]
