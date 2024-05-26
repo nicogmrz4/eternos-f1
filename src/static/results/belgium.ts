@@ -10,7 +10,8 @@ export const belgiumGPResult: DriverResultInterface[] = [
   new DriverResultDTO(5, 7, false, false, drivers.EMMA),
   new DriverResultDTO(6, 5, false, false, drivers.JOHN),
   new DriverResultDTO(7, 4, false, false, drivers.MICHAEL),
+  new DriverResultDTO(8, 11, false, true, drivers.GABRIEL),
   new DriverResultDTO(9, 3, false, false, drivers.WILLIAM),
-  new DriverResultDTO(8, 8, false, true, drivers.MIA),
   new DriverResultDTO(10, 10, false, true, drivers.SOFIA),
+  new DriverResultDTO(11, 8, false, true, drivers.MIA),
 ]
