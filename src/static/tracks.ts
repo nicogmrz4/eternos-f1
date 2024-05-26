@@ -1,35 +1,29 @@
-import type { DriverResultInterface } from "@/interfaces/driverResult"
 import { hungaryGPResult } from "./results/hungary"
 import { belgiumGPResult } from "./results/belgium"
+import type { TrackInterface } from "@/interfaces/track"
+import { TrackDTO } from "@/dto/trackDTO"
 
-interface Track {
-    name: string
-    circuit: string,
-    flag: string
-    isRaced: boolean
-    result: DriverResultInterface[]
-}
 
-export default <Track[]>[
-    {
-        name: 'Hungarian Grand Prix',
-        circuit: 'Hungaroring',
-        flag: 'fi fi-hu',
-        isRaced: true,
-        result: hungaryGPResult
-    },
-    {
-        name: 'Belgian Grand Prix',
-        circuit: 'Circuit de Spa-Francorchamps',
-        flag: 'fi fi-be',
-        isRaced: true,
-        result: belgiumGPResult
-    },
-    {
-        name: 'Dutch Grand Prix',
-        circuit: 'Circuit Brugge - Kuurne',
-        flag: 'fi fi-nl',
-        isRaced: false,
-        result: []
-    }
+export default <TrackInterface[]> [
+    new TrackDTO(
+        'Hungarian Grand Prix',
+        'Hungaroring',
+        'fi fi-hu',
+        true,
+        hungaryGPResult
+    ),
+    new TrackDTO(
+        'Belgian Grand Prix',
+        'Circuit de Spa-Francorchamps',
+        'fi fi-be',
+        true,
+        belgiumGPResult
+    ),
+    new TrackDTO(
+        'Dutch Grand Prix',
+        'Circuit Brugge - Kuurne',
+        'fi fi-nl',
+        false,
+        []
+    )
 ]
