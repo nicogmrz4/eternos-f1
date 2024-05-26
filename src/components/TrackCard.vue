@@ -62,8 +62,4 @@ const props = defineProps({
     border-radius: 10%;
     border: 2px solid #fff;
 }
-
-.track-card:hover {
-    transform: scale(1.05);
-}
 </style>

@@ -56,7 +56,4 @@ const props = defineProps({
   margin-left: auto;
 }
 
-.team-card:hover {
-    transform: scale(1.05);
-}
 </style>
