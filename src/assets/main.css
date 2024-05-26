@@ -8,4 +8,6 @@
     --card-border-radius: 6px;
     --card-padding: 6px;
     --card-list-gap: 6px;
+    --pending-color: #FFBF00;
+    --success-color: #129F0D;
 }

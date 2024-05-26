@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import Badge from '@/components/atoms/Badge.vue';
+import type { DriverResultInterface } from '@/interfaces/driverResult';
 const props = defineProps({
     order: Number,
     name: String,
     circuit: String,
-    flag: String
+    flag: String,
+    isRaced: Boolean,
+    result: () => Array<DriverResultInterface>
 });
 </script>
 
@@ -15,6 +19,9 @@ const props = defineProps({
             <div class="name">{{ name }}</div>
             <div class="circuit card-text-muted">{{ circuit }}</div>
         </div>
+        <Badge class="track-card__status" :color="isRaced ? 'success' : 'pending'">
+            {{ isRaced ? 'Completada' : 'Pendiente'  }}
+        </Badge>
     </div>
 </template>
 
@@ -61,5 +68,9 @@ const props = defineProps({
     font-size: 28px;
     border-radius: 10%;
     border: 2px solid #fff;
+}
+
+.track-card__status {
+    margin-left: auto;
 }
 </style>
