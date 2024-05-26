@@ -7,7 +7,7 @@ interface Track {
     circuit: string,
     flag: string
     isRaced: boolean
-    result?: DriverResultInterface[]
+    result: DriverResultInterface[]
 }
 
 export default <Track[]>[
