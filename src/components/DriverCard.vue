@@ -118,6 +118,7 @@ const showStats = ref(false);
     font-weight: 700;
     font-size: 22px;
     height: 20px;
+    color: white;
 }
 
 .driver-card__stats > .stat > .stat__label {
