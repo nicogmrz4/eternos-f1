@@ -57,6 +57,8 @@ ul > li > a:hover {
     left: 0;
     z-index: 100;
     box-shadow: rgba(0, 0, 0, 0.25) 0px -14px 28px, rgba(0, 0, 0, 0.22) 0px -10px 10px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
   }
   ul > li > a {
     text-decoration: none;
@@ -64,6 +66,7 @@ ul > li > a:hover {
     padding: 1em;
     opacity: .5;
     transition: opacity 200ms ease-in;
+    font-size: 14px;
   }
 }
 </style>
