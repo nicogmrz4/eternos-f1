@@ -5,9 +5,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { IoPerson, IoShield, IoCalendarSharp } from "oh-vue-icons/icons";
+import { IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill } from "oh-vue-icons/icons";
 
-addIcons(IoPerson, IoShield, IoCalendarSharp);
+addIcons(IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill);
 
 const app = createApp(App)
 app.use(router)
