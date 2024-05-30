@@ -23,13 +23,25 @@ export function calcDriversPoints(): DriverStatsInterface[] {
       if (result!.startingPosition == 1) stats.poles++;
       if (result!.position == 1) stats.wins++;
       if (result!.position <= 3) stats.podiums++;
+      stats.results.push(result!.position);
     });
 
     driverStats.push(stats);
 
     driverStats.sort((a, b) => {
+      if (a.points == b.points) return whoHasBetterResults(a, b);
       return b.points - a.points;
     });
   });
   return driverStats;
+}
+
+function whoHasBetterResults(a: DriverStatsInterface, b: DriverStatsInterface) {
+  for (let i = 1; i <= 20; i++) {
+    const aResults = a.results.filter((result) => result == i).length;
+    const bResults = b.results.filter((result) => result == i).length;
+    if (aResults == bResults) continue;
+    return bResults - aResults;
+  }
+  return 0;
 }

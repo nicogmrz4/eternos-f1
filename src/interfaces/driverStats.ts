@@ -8,4 +8,5 @@ export interface DriverStatsInterface {
   fastLaps: number
   poles: number
   points: number
+  results: number[]
 }
