@@ -3,6 +3,7 @@ import { drivers } from "@/static/drivers";
 import { DriverStatsDTO } from "@/dto/driverStatsDTO";
 import points from "@/static/points";
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
+import type { DriverResultInterface } from "@/interfaces/driverResult";
 
 export function calcDriversPoints(): DriverStatsInterface[] {
   let driverStats: DriverStatsDTO[] = [];
@@ -15,23 +16,13 @@ export function calcDriversPoints(): DriverStatsInterface[] {
       let result = track.result?.find(
         (result) => result.driver.id == driver.id
       );
-      if (result == undefined) return;
-      stats.races++;
-      if (result!.position <= 10) stats.points += points[result!.position - 1]; // Points for the first 10 positions
-      if (result!.fastLap) stats.fastLaps++;
-      if (result!.fastLap && result!.position <= 10) stats.points++;
-      if (result!.startingPosition == 1) stats.poles++;
-      if (result!.position == 1) stats.wins++;
-      if (result!.position <= 3) stats.podiums++;
-      stats.results.push(result!.position);
+      if (!result) return;
+      sumStats(stats, result);
     });
 
     driverStats.push(stats);
 
-    driverStats.sort((a, b) => {
-      if (a.points == b.points) return whoHasBetterResults(a, b);
-      return b.points - a.points;
-    });
+    driverStats = sortStats(driverStats);
   });
 
   const penultimatePoints = calcDriversPenultimatePoints();
@@ -59,23 +50,13 @@ function calcDriversPenultimatePoints(): DriverStatsInterface[] {
       let result = track.result?.find(
         (result) => result.driver.id == driver.id
       );
-      if (result == undefined) return;
-      stats.races++;
-      if (result!.position <= 10) stats.points += points[result!.position - 1]; // Points for the first 10 positions
-      if (result!.fastLap) stats.fastLaps++;
-      if (result!.fastLap && result!.position <= 10) stats.points++;
-      if (result!.startingPosition == 1) stats.poles++;
-      if (result!.position == 1) stats.wins++;
-      if (result!.position <= 3) stats.podiums++;
-      stats.results.push(result!.position);
+      if (!result) return;
+      sumStats(stats, result);
     });
 
     driverStats.push(stats);
 
-    driverStats.sort((a, b) => {
-      if (a.points == b.points) return whoHasBetterResults(a, b);
-      return b.points - a.points;
-    });
+    driverStats = sortStats(driverStats);
   });
   return driverStats;
 }
@@ -88,4 +69,22 @@ function whoHasBetterResults(a: DriverStatsInterface, b: DriverStatsInterface) {
     return bResults - aResults;
   }
   return 0;
+}
+
+function sumStats(stats: DriverStatsInterface, result: DriverResultInterface) {
+  stats.races++;
+  if (result!.position <= 10) stats.points += points[result!.position - 1]; // Points for the first 10 positions
+  if (result!.fastLap) stats.fastLaps++;
+  if (result!.fastLap && result!.position <= 10) stats.points++;
+  if (result!.startingPosition == 1) stats.poles++;
+  if (result!.position == 1) stats.wins++;
+  if (result!.position <= 3) stats.podiums++;
+  stats.results.push(result!.position);
+}
+
+function sortStats(statsArr: DriverStatsInterface[]) {
+  return statsArr.sort((a, b) => {
+    if (a.points == b.points) return whoHasBetterResults(a, b);
+    return b.points - a.points;
+  });
 }
