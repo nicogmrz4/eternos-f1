@@ -10,8 +10,8 @@ export function calcDriversPoints(): DriverStatsInterface[] {
     let stats: DriverStatsDTO = new DriverStatsDTO(driver);
 
     // Find each track that the driver has raced and plus his points
-    tracks.forEach((track) => {
-      if (track.isRaced == false) return;
+    const racedTracks = tracks.filter((track) => track.isRaced == true);
+    racedTracks.forEach((track) => {
       let result = track.result?.find(
         (result) => result.driver.id == driver.id
       );
