@@ -9,4 +9,5 @@ export interface DriverStatsInterface {
   poles: number
   points: number
   results: number[]
+  lastPosition: number
 }
