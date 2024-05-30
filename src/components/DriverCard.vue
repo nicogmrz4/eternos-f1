@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Points from './atoms/Points.vue'
+import PositionChange from './atoms/PositionChange.vue'
+import PositionAndDiff from './molecules/PositionAndDiff.vue'
 import { type DriverInterface } from '@/interfaces/driver';
 
 const props = defineProps({
@@ -9,6 +11,7 @@ const props = defineProps({
     points: Number,
     fastLaps: Number,
     position: Number,
+    lastPosition: Number,
     podiums: Number,
     races: Number,
     wins: Number,
@@ -19,12 +22,14 @@ const showStats = ref(false);
 
 <template>
     <div class="driver-card" @click="showStats = !showStats">
-        <span class="driver-card__position">{{ position }}</span>
+        <PositionAndDiff :diff="lastPosition! - position!" :position="position"/>
+        <!-- <span class="driver-card__position">{{ position }}</span> -->
         <img class="driver-card__avatar" :src="driver?.avatar">
         <div class="driver-card__info">
             <span class="name">{{ driver?.name }}</span>
             <span class="team card-text-muted">{{ driver?.team }}</span>
         </div>
+        <!-- <PositionChange :diff="lastPosition! - position!" />   -->
         <Points class="driver-card__points" :points="points" />
         <Transition>
             <div v-if="showStats" class="driver-card__stats">
@@ -84,6 +89,8 @@ const showStats = ref(false);
 
 .driver-card__info {
     display: flex;
+    width: 100%;
+    max-width: 150px;
     flex-direction: column;
     justify-content: center;
 }
