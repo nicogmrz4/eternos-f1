@@ -39,7 +39,7 @@ onMounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
+  width: 25px;
   position: relative;
 }
 
