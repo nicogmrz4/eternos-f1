@@ -95,5 +95,6 @@ nav {
 
 .router-link-active {
   opacity: 1!important;
+  border-bottom: 3px solid white;
 }
 </style>
