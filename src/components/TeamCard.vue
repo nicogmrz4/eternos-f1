@@ -1,6 +1,6 @@
 <template>
   <div class="team-card" >
-    <span class="team-card__position">{{ position }}</span>
+    <PositionAndDiff :position="position" :diff="lastPosition! - position!"/>
     <img class="team-card__avatar" :src="avatar">
     <span class="team-card__name">{{ name }}</span>
     <Points class="team-card__points" :points="points" />
@@ -9,9 +9,11 @@
 
 <script setup lang="ts">
 import Points from './atoms/Points.vue';
+import PositionAndDiff from './molecules/PositionAndDiff.vue';
 
 const props = defineProps({
   position: Number,
+  lastPosition: Number,
   avatar: String,
   name: String,
   points: Number,
