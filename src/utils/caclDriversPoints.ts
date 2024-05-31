@@ -38,7 +38,7 @@ export function calcDriversPoints(): DriverStatsInterface[] {
   return driverStats;
 }
 
-function calcDriversPenultimatePoints(): DriverStatsInterface[] {
+export function calcDriversPenultimatePoints(): DriverStatsInterface[] {
   let driverStats: DriverStatsDTO[] = [];
   drivers.forEach((driver) => {
     let stats: DriverStatsDTO = new DriverStatsDTO(driver);

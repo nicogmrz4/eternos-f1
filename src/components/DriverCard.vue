@@ -23,13 +23,11 @@ const showStats = ref(false);
 <template>
     <div class="driver-card" @click="showStats = !showStats">
         <PositionAndDiff :diff="lastPosition! - position!" :position="position"/>
-        <!-- <span class="driver-card__position">{{ position }}</span> -->
         <img class="driver-card__avatar" :src="driver?.avatar">
         <div class="driver-card__info">
             <span class="name">{{ driver?.name }}</span>
             <span class="team card-text-muted">{{ driver?.team }}</span>
         </div>
-        <!-- <PositionChange :diff="lastPosition! - position!" />   -->
         <Points class="driver-card__points" :points="points" />
         <Transition>
             <div v-if="showStats" class="driver-card__stats">
@@ -71,13 +69,6 @@ const showStats = ref(false);
     position: relative;
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
     cursor: pointer;
-}
-
-.driver-card__position {
-    width: 25px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 900;
 }
 
 .driver-card__avatar {
