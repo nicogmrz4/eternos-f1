@@ -48,7 +48,7 @@ const diffClasses = computed(() => {
 
 .diff .value {
   font-size: 22px;
-  font-weight: 600;
+  font-weight: 900;
   width: 35px;
   transform: translateX(-2.5px);
 }
