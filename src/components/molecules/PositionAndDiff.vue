@@ -1,7 +1,7 @@
 <template>
   <div class="pos-and-diff__container">
     <Transition>
-      <template v-if="showPosition">
+      <template v-if="globalStore.showPositions">
         <PositionChange :diff="diff" />
       </template>
       <template v-else="!showPosition">
@@ -14,8 +14,10 @@
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from 'vue';
 import PositionChange from '@/components/atoms/PositionChange.vue';
+import { useGlobalStore } from '@/stores/globalStore';
 
-const showPosition: Ref<boolean> = ref(false);
+
+const globalStore = useGlobalStore();
 const props = defineProps({
   position: {
     type: Number,
@@ -26,12 +28,6 @@ const props = defineProps({
     default: 0
   }
 });
-
-onMounted(() => {
-  setInterval(() => {
-    showPosition.value = !showPosition.value
-  }, 3000)
-})
 </script>
 
 <style scoped>
