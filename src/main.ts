@@ -4,12 +4,16 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import { createPinia } from 'pinia'
 import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill } from "oh-vue-icons/icons";
+import { IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill, MdArrowdropdownTwotone, MdArrowdropupTwotone, MdRemove } from "oh-vue-icons/icons";
 
-addIcons(IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill);
+addIcons(IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill, MdArrowdropdownTwotone, MdArrowdropupTwotone, MdRemove);
+
+const pinia = createPinia()
 
 const app = createApp(App)
 app.use(router)
+app.use(pinia)
 app.component("v-icon", OhVueIcon);
 app.mount('#app')
