@@ -34,6 +34,7 @@ const showResult = ref(false);
                     <span class="pos">{{ r.dnf ? 'DNF' : r.position }}</span>
                     <span class="name">{{ r.driver.name }}</span>
                     <span class="team">{{ r.driver.team }}</span>
+                    <v-icon v-if="r.fastLap" name="oi-stopwatch" class="fast-lap-icon" scale="1"></v-icon> 
                 </div>
             </div>
         </Transition>
@@ -120,8 +121,24 @@ const showResult = ref(false);
     font-weight: 700;
     background-color: #c92bdf;
     border-radius: 8px;
+    animation: fastLap 5s ease-in-out infinite;
 }
 
+@keyframes fastLap {
+    25% {
+        background-color: #ca2bdfd5;
+    }
+    50% {
+        background-color: #ca2bdf00;
+    }
+    75% {
+        background-color: #ca2bdfd5;
+    }
+}
+
+.fast-lap-icon {
+    margin-left: auto;
+}
 
 .v-enter-from {
     max-height: 0;
