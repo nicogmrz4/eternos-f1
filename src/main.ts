@@ -1,19 +1,35 @@
-import './assets/main.css'
+import "./assets/main.css";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import { createPinia } from 'pinia'
-import { OhVueIcon, addIcons } from 'oh-vue-icons';
-import { IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill, MdArrowdropdownTwotone, MdArrowdropupTwotone, MdRemove } from "oh-vue-icons/icons";
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { createPinia } from "pinia";
+import { OhVueIcon, addIcons } from "oh-vue-icons";
+import {
+  IoCalendarSharp,
+  GiFullMotorcycleHelmet,
+  RiShieldFill,
+  MdArrowdropdownTwotone,
+  MdArrowdropupTwotone,
+  MdRemove,
+  OiStopwatch,
+} from "oh-vue-icons/icons";
 
-addIcons(IoCalendarSharp, GiFullMotorcycleHelmet, RiShieldFill, MdArrowdropdownTwotone, MdArrowdropupTwotone, MdRemove);
+addIcons(
+  IoCalendarSharp,
+  GiFullMotorcycleHelmet,
+  RiShieldFill,
+  MdArrowdropdownTwotone,
+  MdArrowdropupTwotone,
+  MdRemove,
+  OiStopwatch
+);
 
-const pinia = createPinia()
+const pinia = createPinia();
 
-const app = createApp(App)
-app.use(router)
-app.use(pinia)
+const app = createApp(App);
+app.use(router);
+app.use(pinia);
 app.component("v-icon", OhVueIcon);
-app.mount('#app')
+app.mount("#app");
