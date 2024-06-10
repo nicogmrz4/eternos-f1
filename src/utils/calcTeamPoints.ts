@@ -1,28 +1,28 @@
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
-import type { Team } from "@/interfaces/team";
+import type { TeamInterface } from "@/interfaces/team";
 import {
   calcDriversPenultimatePoints,
   calcDriversPoints,
 } from "./caclDriversPoints";
 import teamsTable from "@/static/teamsTable";
 
-export function calcTeamPoints(): Team[] {
+export function calcTeamPoints(): TeamInterface[] {
   const driversStats: DriverStatsInterface[] = calcDriversPoints();
   const driversPenultimateStats = calcDriversPenultimatePoints();
 
-  const teams: Team[] = teamsTable;
-  const teamsPenultimatePoints: Team[] = [];
+  const teams: TeamInterface[] = teamsTable;
+  const teamsPenultimatePoints: TeamInterface[] = [];
   teams.forEach(t => teamsPenultimatePoints.push(Object.assign({}, t)));
 
-  teams.map((team) => {
-    team.points = driversStats
-      .filter((driverStats) => driverStats.driver.team == team.name)
+  teams.map((TeamInterface) => {
+    TeamInterface.points = driversStats
+      .filter((driverStats) => driverStats.driver.team.name == TeamInterface.name)
       .reduce((a, b) => a + b.points, 0);
   });
   
-  teamsPenultimatePoints.map((team) => {
-    team.points = driversPenultimateStats
-      .filter((driverStats) => driverStats.driver.team == team.name)
+  teamsPenultimatePoints.map((TeamInterface) => {
+    TeamInterface.points = driversPenultimateStats
+      .filter((driverStats) => driverStats.driver.team.name == TeamInterface.name)
       .reduce((a, b) => a + b.points, 0);
   });
 
@@ -30,9 +30,9 @@ export function calcTeamPoints(): Team[] {
     return b.points - a.points;
   });
   
-  teamsPenultimatePoints.forEach((team, i) => {
+  teamsPenultimatePoints.forEach((TeamInterface, i) => {
     teams.forEach((t) => {
-      if (t.name == team.name) {
+      if (t.name == TeamInterface.name) {
         t.lastPosition = i + 1;
         return;
       }

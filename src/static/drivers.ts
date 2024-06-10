@@ -13,25 +13,46 @@ import {
 } from "./teams";
 import { Driver } from "@/dto/driverDTO";
 
-export const JOHN = new Driver(1, 'https://i.pravatar.cc/150?img=3', 'John', MERCEDES);
-export const EMMA = new Driver(2, 'https://i.pravatar.cc/150?img=33', 'Emma', FERRARI);
-export const MICHAEL = new Driver(3, 'https://i.pravatar.cc/150?img=55', 'Michael', RED_BULL);
-export const SOFIA = new Driver(4, 'https://i.pravatar.cc/150?img=1', 'Sophia', MCLAREN);
-export const WILLIAM = new Driver(5, 'https://i.pravatar.cc/150?img=11', 'William', RENAULT);
-export const OLIVIA = new Driver(6, 'https://i.pravatar.cc/150?img=23', 'Olivia', ALPHATAURI);
-export const JAMES = new Driver(7, 'https://i.pravatar.cc/150?img=12', 'James', RACING_POINT); 
-export const AVA = new Driver(8, 'https://i.pravatar.cc/150?img=27', 'Ava', ALFA_ROMEO);
-export const ALEXANDER = new Driver(9, 'https://i.pravatar.cc/150?img=18', 'Alexander', HAAS);
-export const MIA = new Driver(10, 'https://i.pravatar.cc/150?img=5', 'Mia', WILLIAMS);
-export const MARCELO = new Driver(11, 'https://i.pravatar.cc/150?img=17', 'Marcelo', MERCEDES);
-export const JOE = new Driver(12, 'https://i.pravatar.cc/150?img=14', 'Joe', FERRARI);
-export const DANIEL = new Driver(13, 'https://i.pravatar.cc/150?img=13', 'Daniel', RENAULT);
-export const LUIS = new Driver(14, 'https://i.pravatar.cc/150?img=22', 'Luis', ALPHATAURI);
-export const LUCAS = new Driver(15, 'https://i.pravatar.cc/150?img=6', 'Lucas', RACING_POINT);
-export const GABRIEL = new Driver(16, 'https://i.pravatar.cc/150?img=59', 'Gabriel', ALFA_ROMEO);
-export const KATE = new Driver(17, 'https://i.pravatar.cc/150?img=43', 'Kate', HAAS);
-export const LANDO = new Driver(18, 'https://i.pravatar.cc/150?img=65', 'Lando', WILLIAMS);
-export const LILIAN = new Driver(19, 'https://i.pravatar.cc/150?img=19', 'Lilian', RED_BULL);
-export const IVAN = new Driver(20, 'https://i.pravatar.cc/150?img=35', 'Iván', MCLAREN);
+export const COLO = new Driver(1, 'Colo', RED_BULL);
+export const EMI = new Driver(2, 'Emi', RED_BULL);
+export const DAMITOX = new Driver(3, 'Damitox', MCLAREN);
+export const GALLA = new Driver(4, 'Galla', MCLAREN);
+export const EMMA = new Driver(5, 'Emma', WILLIAMS);
+export const MAX = new Driver(6, 'Max', WILLIAMS);
+export const NICOGMERZ4 = new Driver(7, 'nicogmerz4', RACING_POINT); 
+export const PABLITO = new Driver(8, 'Pablito', RACING_POINT);
+export const SHINO = new Driver(9, 'Shino', ALFA_ROMEO);
+export const FER = new Driver(10, 'Fer', ALFA_ROMEO);
+export const FACULANUS = new Driver(11, 'Faculanus', FERRARI);
+export const JUANMA = new Driver(12, 'Juanma', FERRARI);
+export const JULIAN_SOSA = new Driver(13, 'Julián Sosa', HAAS);
+export const SEBA_HUNTER = new Driver(14, 'Seba Hunter', HAAS);
+export const KURI = new Driver(15, 'Kuri', ALPHATAURI);
+export const RYU = new Driver(16, 'Ryu', ALPHATAURI);
+export const LUCY = new Driver(17, 'Lucy', MERCEDES);
+export const BLADEBAHIA = new Driver(18, 'Bladebahia', MERCEDES);
+export const PEPPA = new Driver(19, 'Peppa', RENAULT);
+export const PIOR = new Driver(20, 'Iván', RENAULT);
 
-export const drivers = [JOHN, EMMA, MICHAEL, SOFIA, WILLIAM, OLIVIA, JAMES, AVA, ALEXANDER, MIA, MARCELO, JOE, DANIEL, LUIS, LUCAS, GABRIEL, KATE, LANDO, LILIAN, IVAN];
+export const drivers = [
+  COLO,
+  EMI,
+  DAMITOX,
+  GALLA,
+  EMMA,
+  MAX,
+  NICOGMERZ4,
+  PABLITO,
+  SHINO,
+  FER,
+  FACULANUS,
+  JUANMA,
+  JULIAN_SOSA,
+  SEBA_HUNTER,
+  KURI,
+  RYU,
+  LUCY,
+  BLADEBAHIA,
+  PEPPA,
+  PIOR
+];
