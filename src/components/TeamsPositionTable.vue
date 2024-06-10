@@ -5,9 +5,9 @@ import TeamCard from '@/components/TeamCard.vue';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
 import { calcDriversPoints } from '@/utils/caclDriversPoints';
 import { calcTeamPoints } from '@/utils/calcTeamPoints';
-import type { Team } from '@/interfaces/team';
+import type { TeamInterface } from '@/interfaces/team';
 
-const data: Ref<Team[]> = ref(calcTeamPoints());
+const data: Ref<TeamInterface[]> = ref(calcTeamPoints());
 
 </script>
 
