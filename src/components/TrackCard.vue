@@ -64,7 +64,7 @@ const showResult = ref(false);
 }
 
 .track-card__order {
-    width: 25px;
+    width: 35px;
     font-size: 20px;
     font-weight: 700;
 }

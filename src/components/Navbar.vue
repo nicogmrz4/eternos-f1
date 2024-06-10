@@ -34,7 +34,7 @@ const items = [
 
 <style scoped>
 nav {
-  width: 100%;
+  width: 100lvw;
   height: 60px;
   background-color: #082479;
   padding: 1rem;

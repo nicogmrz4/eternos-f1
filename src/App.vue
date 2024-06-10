@@ -14,14 +14,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <Navbar/>
-  <main>
-    <RouterView v-slot="{ Component }"> 
-      <Transition name="router">
-        <Component :is="Component"/>
-      </Transition>
-    </RouterView>
-  </main>
+  <Navbar />
+  <div class="app-container">
+    <main>
+      <RouterView v-slot="{ Component }">
+        <Transition name="router">
+          <Component :is="Component" />
+        </Transition>
+      </RouterView>
+    </main>
+  </div>
 </template>
 
 <style>
@@ -29,6 +31,10 @@ onMounted(() => {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.app-container {
+  width: 100svw;
 }
 
 main {
@@ -39,7 +45,7 @@ main {
   padding-bottom: 3em;
 }
 
-main > * {
+main>* {
   width: 100%;
 }
 
@@ -50,8 +56,8 @@ main > * {
 }
 
 .router-enter-from {
- opacity: 0;
- transform: translateY(600px);
+  opacity: 0;
+  transform: translateY(600px);
 }
 
 .router-enter-active {
