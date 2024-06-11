@@ -46,7 +46,7 @@ export default <TrackInterface[]> [
         []
     ),    
     new TrackDTO(
-        'GP Abu Dhabi',
+        'GP Emiratos Árabes',
         'Circuito Yas Marina',
         'fi fi-ae',
         false,
