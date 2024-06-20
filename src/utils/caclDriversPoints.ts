@@ -93,6 +93,7 @@ function sumStats(stats: DriverStatsInterface, result: DriverResultInterface) {
 }
 
 function sortStats(statsArr: DriverStatsInterface[]) {
+  statsArr.sort((a, b) => b.races - a.races);
   return statsArr.sort((a, b) => {
     if (a.points == b.points) return whoHasBetterResults(a, b);
     return b.points - a.points;
