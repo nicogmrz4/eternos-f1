@@ -33,7 +33,7 @@ const showResult = ref(false);
                     :class="['driver-result', r.dnf ? 'dnf' : '', r.fastLap ? 'fast-lap' : '']">
                     <span class="pos">{{ r.dnf ? 'DNF' : r.position }}</span>
                     <span class="name">{{ r.driver.name }}</span>
-                    <span class="team">{{ r.driver.team }}</span>
+                    <span class="team">{{ r.driver.team.name }}</span>
                     <v-icon v-if="r.fastLap" name="oi-stopwatch" class="fast-lap-icon" scale="1"></v-icon> 
                 </div>
             </div>
