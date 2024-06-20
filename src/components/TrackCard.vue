@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Badge from '@/components/atoms/Badge.vue';
 import type { DriverResultInterface } from '@/interfaces/driverResult';
+import PositionChangeMini from '@/components/atoms/PositionChangeMini.vue';
 import { ref } from 'vue';
 
 interface Props {
@@ -29,12 +30,45 @@ const showResult = ref(false);
         </Badge>
         <Transition>
             <div v-if="showResult && isRaced" class="track-card__result">
-                <div v-for="r in result" :key="r.driver.id"
-                    :class="['driver-result', r.dnf ? 'dnf' : '', r.fastLap ? 'fast-lap' : '']">
+                <!-- <div v-for="r in result" :key="r.driver.id"
+                    :class="['driver-result', r.dnf ? 'dnf' : '']">
                     <span class="pos">{{ r.dnf ? 'DNF' : r.position }}</span>
                     <span class="name">{{ r.driver.name }}</span>
-                    <span class="team">{{ r.driver.team.name }}</span>
-                    <v-icon v-if="r.fastLap" name="oi-stopwatch" class="fast-lap-icon" scale="1"></v-icon> 
+                    <div v-if="!r.dnf" class="icons">
+                        <PositionChangeMini :position="r.position" :start-position="r.startingPosition"/>
+                        <v-icon v-if="r.cleanRace" name="md-healthandsafety-outlined" scale="1.2" class="clean-race"></v-icon> 
+                        <v-icon v-if="r.startingPosition == 1" name="md-workspacepremium" scale="1.2" class="pole"></v-icon> 
+                        <v-icon v-if="r.fastLap" name="oi-stopwatch" scale="1.3"></v-icon> 
+                    </div>
+                </div> -->
+
+                <div class="table__container">
+                    <table>
+                        <tbody>
+                            <tr v-for="r in result" :key="r.driver.id" :class="[r.dnf ? 'dnf' : '']">
+                                <td class="pos__col">{{ r.position }}</td>
+                                <td class="name__col">{{ r.driver.name }}</td>
+                                <td class="diff__col">
+                                    <template v-if="r.dnf">
+                                        <span class="dnf">DNF</span>
+                                    </template>
+                                    <template v-else>
+                                        <PositionChangeMini :position="r.position"
+                                            :start-position="r.startingPosition" />
+                                    </template>
+                                </td>
+                                <td class="icons__col">
+                                    <template v-if="!r.dnf">
+                                        <v-icon v-if="r.cleanRace" name="md-healthandsafety-outlined" scale="1.2"
+                                            class="clean-race"></v-icon>
+                                        <v-icon v-if="r.startingPosition == 1" name="md-workspacepremium" scale="1.2"
+                                            class="pole"></v-icon>
+                                        <v-icon v-if="r.fastLap" name="oi-stopwatch" scale="1.3"></v-icon>
+                                    </template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </Transition>
@@ -42,6 +76,31 @@ const showResult = ref(false);
 </template>
 
 <style scoped>
+.table__container {
+    display: flex;
+    padding: 0 8px;
+}
+
+table {
+    width: 100%;
+    font-size: 18px;
+    padding: 0 1em;
+    border-collapse: collapse;
+}
+
+table .name__col {}
+
+table .diff__col {
+    text-align: left;
+    font-size: 16px;
+    width: 80px;
+}
+
+table .icons__col {
+    width: 80px;
+    text-align: left;
+}
+
 .track-card {
     display: flex;
     flex-wrap: wrap;
@@ -74,13 +133,13 @@ const showResult = ref(false);
     flex-direction: column;
 }
 
-.track-card__info > .name {
+.track-card__info>.name {
     font-size: 18px;
     font-weight: 500;
     height: 20px;
 }
 
-.track-card__info > .circuit {
+.track-card__info>.circuit {
     font-size: 12px;
     font-weight: 100;
 }
@@ -103,13 +162,15 @@ const showResult = ref(false);
 .driver-result {
     display: flex;
     padding: 1px 12px;
+    font-size: 18px;
+    margin-bottom: 2px;
 }
 
-.driver-result > .pos {
+.driver-result>.pos {
     width: 40px;
 }
 
-.driver-result > .name {
+.driver-result>.name {
     width: 120px;
 }
 
@@ -128,16 +189,20 @@ const showResult = ref(false);
     25% {
         background-color: #ca2bdfd5;
     }
+
     50% {
         background-color: #ca2bdf00;
     }
+
     75% {
         background-color: #ca2bdfd5;
     }
 }
 
-.fast-lap-icon {
+.icons {
     margin-left: auto;
+    display: flex;
+    gap: 4px;
 }
 
 .v-enter-from {

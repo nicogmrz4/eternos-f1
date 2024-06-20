@@ -15,6 +15,11 @@ import {
   MdRemove,
   OiStopwatch,
   MdInfooutline,
+  MdWorkspacepremium,
+  MdCleaningservices,
+  LaGrinSolid,
+  MdHealthandsafety,
+  MdHealthandsafetyOutlined,
 } from "oh-vue-icons/icons";
 
 addIcons(
@@ -25,7 +30,10 @@ addIcons(
   MdArrowdropupTwotone,
   MdRemove,
   OiStopwatch,
-  MdInfooutline
+  MdInfooutline,
+  MdWorkspacepremium,
+  MdHealthandsafety,
+  MdHealthandsafetyOutlined
 );
 
 const pinia = createPinia();
