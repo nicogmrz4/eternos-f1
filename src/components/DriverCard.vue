@@ -5,17 +5,19 @@ import PositionChange from './atoms/PositionChange.vue'
 import PositionAndDiff from './molecules/PositionAndDiff.vue'
 import { type DriverInterface } from '@/interfaces/driver';
 
-const props = defineProps({
-    driver: Object as () => DriverInterface,
-    poles: Number,
-    points: Number,
-    fastLaps: Number,
-    position: Number,
-    lastPosition: Number,
-    podiums: Number,
-    races: Number,
-    wins: Number,
-});
+interface Props {
+    driver: DriverInterface
+    poles: number
+    points: number
+    fastLaps: number
+    position: number
+    lastPosition: number | null,
+    podiums: number
+    races: number
+    wins: number
+}
+
+const props = defineProps<Props>();
 
 const showStats = ref(false);
 </script>
