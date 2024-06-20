@@ -5,6 +5,8 @@ import points from "@/static/points";
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
 import type { DriverResultInterface } from "@/interfaces/driverResult";
 
+const MAX_POINTABLE_POSITIONS = 15;
+
 export function calcDriversPoints(): DriverStatsInterface[] {
   let driverStats: DriverStatsDTO[] = [];
   drivers.forEach((driver) => {
@@ -73,12 +75,20 @@ function whoHasBetterResults(a: DriverStatsInterface, b: DriverStatsInterface) {
 
 function sumStats(stats: DriverStatsInterface, result: DriverResultInterface) {
   stats.races++;
-  if (result!.position <= 10) stats.points += points[result!.position - 1]; // Points for the first 10 positions
+  if (result!.dnf) return;
+  if (result!.position <= MAX_POINTABLE_POSITIONS) stats.points += points[result!.position - 1];
   if (result!.fastLap) stats.fastLaps++;
-  if (result!.fastLap && result!.position <= 10) stats.points++;
-  if (result!.startingPosition == 1) stats.poles++;
+  if (result!.fastLap && result!.position <= MAX_POINTABLE_POSITIONS) stats.points++;
+  if (result!.startingPosition == 1) {
+    stats.poles++;
+    stats.points += 2;
+  }
   if (result!.position == 1) stats.wins++;
   if (result!.position <= 3) stats.podiums++;
+  if (result!.startingPosition - result!.position > 0) {
+    stats.points += Math.min(3, result!.startingPosition - result!.position);
+  } 
+  if (result!.cleanRace) stats.points += 2;
   stats.results.push(result!.position);
 }
 

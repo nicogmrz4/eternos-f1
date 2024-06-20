@@ -12,6 +12,6 @@ export class DriverStatsDTO implements DriverStatsInterface
     public fastLaps: number = 0, 
     public points: number = 0,
     public results: number[] = [],
-    public lastPosition: number = 0
+    public lastPosition: number | null = null
   ) {}
 } 
