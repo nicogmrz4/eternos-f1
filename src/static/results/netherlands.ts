@@ -9,7 +9,7 @@ export const netherlandsGPResult: DriverResultDTO[] = [
   new DriverResultDTO(drivers.SHINO).setPos(4).setStartingPos(13),
   new DriverResultDTO(drivers.NICOGMERZ4).setPos(5).setStartingPos(7),
   new DriverResultDTO(drivers.GROBA).setPos(6).setStartingPos(4),
-  new DriverResultDTO(drivers.EMMA).setPos(7).setStartingPos(12),
+  new DriverResultDTO(drivers.EMMA).setPos(7).setStartingPos(12).setDNF(),
   new DriverResultDTO(drivers.KURI).setPos(8).setStartingPos(8),
   new DriverResultDTO(drivers.SEBA_HUNTER).setPos(9).setStartingPos(5),
   new DriverResultDTO(drivers.RYU).setPos(10).setStartingPos(6),
