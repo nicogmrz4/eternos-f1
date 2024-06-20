@@ -1,5 +1,6 @@
 import type { TrackInterface } from "@/interfaces/track"
 import { TrackDTO } from "@/dto/trackDTO"
+import { netherlandsGPResult } from "./results/netherlands"
 
 
 export default <TrackInterface[]> [
@@ -7,8 +8,8 @@ export default <TrackInterface[]> [
         'GP Holanda',
         'Circuito de Zandvoort',
         'fi fi-nl',
-        false,
-        []
+        true,
+        netherlandsGPResult
     ),
     new TrackDTO(
         'GP Gran Bretaña',
