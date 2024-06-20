@@ -2,9 +2,9 @@
 import DriverCard from '@/components/DriverCard.vue';
 import { ref, type Ref } from 'vue';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
-import { calcDriversPoints } from '@/utils/caclDriversPoints';
+import { calcDriversStats } from '@/utils/calcDriversPoints';
 
-let driversStats: Ref<DriverStatsInterface[]> = ref(calcDriversPoints());
+let driversStats: Ref<DriverStatsInterface[]> = ref(calcDriversStats());
 </script>
 
 <template>

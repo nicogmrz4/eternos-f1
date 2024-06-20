@@ -1,14 +1,14 @@
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
 import type { TeamInterface } from "@/interfaces/team";
 import {
-  calcDriversPenultimatePoints,
-  calcDriversPoints,
-} from "./caclDriversPoints";
+  calcDriversPenultimateStats,
+  calcDriversStats,
+} from "./calcDriversPoints";
 import teamsTable from "@/static/teamsTable";
 
 export function calcTeamPoints(): TeamInterface[] {
-  const driversStats: DriverStatsInterface[] = calcDriversPoints();
-  const driversPenultimateStats = calcDriversPenultimatePoints();
+  const driversStats: DriverStatsInterface[] = calcDriversStats();
+  const driversPenultimateStats = calcDriversPenultimateStats();
 
   const teams: TeamInterface[] = teamsTable;
   const teamsPenultimatePoints: TeamInterface[] = [];
