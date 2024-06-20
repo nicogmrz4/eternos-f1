@@ -20,6 +20,11 @@ const router = createRouter({
       path: '/teams-championship',
       name: 'teams',
       component: TeamsChampionshipView
+    },
+    {
+      path: '/rules',
+      name: 'rules',
+      component: () => import('@/views/RulesView.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

@@ -14,6 +14,7 @@ import {
   MdArrowdropupTwotone,
   MdRemove,
   OiStopwatch,
+  MdInfooutline,
 } from "oh-vue-icons/icons";
 
 addIcons(
@@ -23,7 +24,8 @@ addIcons(
   MdArrowdropdownTwotone,
   MdArrowdropupTwotone,
   MdRemove,
-  OiStopwatch
+  OiStopwatch,
+  MdInfooutline
 );
 
 const pinia = createPinia();

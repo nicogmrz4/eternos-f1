@@ -22,7 +22,7 @@ export const MAX = new Driver(6, 'Max', WILLIAMS);
 export const NICOGMERZ4 = new Driver(7, 'nicogmerz4', RACING_POINT); 
 export const PABLITO = new Driver(8, 'Pablito', RACING_POINT);
 export const SHINO = new Driver(9, 'Shino', ALFA_ROMEO);
-export const FER = new Driver(10, 'Fer', ALFA_ROMEO);
+export const JACKO = new Driver(10, 'Jacko', ALFA_ROMEO);
 export const FACULANUS = new Driver(11, 'Faculanus', FERRARI);
 export const JUANMA = new Driver(12, 'Juanma', FERRARI);
 export const JULIAN_SOSA = new Driver(13, 'Julián Sosa', HAAS);
@@ -44,7 +44,7 @@ export const drivers = [
   NICOGMERZ4,
   PABLITO,
   SHINO,
-  FER,
+  JACKO,
   FACULANUS,
   JUANMA,
   JULIAN_SOSA,

@@ -28,6 +28,11 @@ const items = [
     title: 'Calendario',
     to: '/calendar',
     icon: 'io-calendar-sharp'
+  },
+  {
+    title: 'Reglas',
+    to: '/rules',
+    icon: 'md-infooutline'
   }
 ]
 </script>
