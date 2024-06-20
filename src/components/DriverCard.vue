@@ -5,24 +5,26 @@ import PositionChange from './atoms/PositionChange.vue'
 import PositionAndDiff from './molecules/PositionAndDiff.vue'
 import { type DriverInterface } from '@/interfaces/driver';
 
-const props = defineProps({
-    driver: Object as () => DriverInterface,
-    poles: Number,
-    points: Number,
-    fastLaps: Number,
-    position: Number,
-    lastPosition: Number,
-    podiums: Number,
-    races: Number,
-    wins: Number,
-});
+interface Props {
+    driver: DriverInterface
+    poles: number
+    points: number
+    fastLaps: number
+    position: number
+    lastPosition: number | null,
+    podiums: number
+    races: number
+    wins: number
+}
+
+const props = defineProps<Props>();
 
 const showStats = ref(false);
 </script>
 
 <template>
     <div class="driver-card" @click="showStats = !showStats">
-        <PositionAndDiff :diff="lastPosition! - position!" :position="position"/>
+        <PositionAndDiff :diff="lastPosition ? lastPosition - position! : 0" :position="position"/>
         <img class="driver-card__avatar" :src="driver?.team.avatar">
         <div class="driver-card__info">
             <span class="name">{{ driver?.name }}</span>
