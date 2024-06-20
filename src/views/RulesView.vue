@@ -121,7 +121,7 @@ const pointsTable: Ref<PointsPerPosition[]> = ref([
 ]);
 
 const otherPoints: Ref<OtherPoints[]> = ref([
-  new OtherPoints('Vuelta rápida', '1'),
+  new OtherPoints('Vuelta rápida', '1', 'Terminar la carrera entre los primeros 15'),
   new OtherPoints('Posiciones ganadas', '1 por posición', 'Límite de 3 puntos acumulados por carrera'),
   new OtherPoints('Pole', '2'),
   new OtherPoints('Carrera limpia', '2')
