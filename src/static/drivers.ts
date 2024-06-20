@@ -31,7 +31,7 @@ export const KURI = new Driver(15, 'Kuri', ALPHATAURI);
 export const RYU = new Driver(16, 'Ryu', ALPHATAURI);
 export const LUCY = new Driver(17, 'Lucy', MERCEDES);
 export const BLADEBAHIA = new Driver(18, 'Bladebahia', MERCEDES);
-export const PEPPA = new Driver(19, 'Peppa', RENAULT);
+export const GROBA = new Driver(19, 'Groba', RENAULT);
 export const PIOR = new Driver(20, 'Pior', RENAULT);
 
 export const drivers = [
@@ -53,6 +53,6 @@ export const drivers = [
   RYU,
   LUCY,
   BLADEBAHIA,
-  PEPPA,
+  GROBA,
   PIOR
 ];
