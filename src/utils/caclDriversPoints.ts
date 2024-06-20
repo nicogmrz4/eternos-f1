@@ -12,7 +12,7 @@ export function calcDriversPoints(): DriverStatsInterface[] {
 
     // Find each track that the driver has raced and plus his points
     const racedTracks = tracks.filter((track) => track.isRaced == true);
-    racedTracks.forEach((track) => {
+    racedTracks.forEach((track, i) => {
       let result = track.result?.find(
         (result) => result.driver.id == driver.id
       );
@@ -28,7 +28,7 @@ export function calcDriversPoints(): DriverStatsInterface[] {
   const penultimatePoints = calcDriversPenultimatePoints();
   penultimatePoints.forEach((penultimate, i) => {
     driverStats.forEach(stats => {
-      if (stats.driver.id == penultimate.driver.id) {
+      if (stats.driver.id == penultimate.driver.id && stats.races > 1) {
         stats.lastPosition = i + 1;
         return;
       }

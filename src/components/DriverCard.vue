@@ -22,7 +22,7 @@ const showStats = ref(false);
 
 <template>
     <div class="driver-card" @click="showStats = !showStats">
-        <PositionAndDiff :diff="lastPosition! - position!" :position="position"/>
+        <PositionAndDiff :diff="lastPosition ? lastPosition - position! : 0" :position="position"/>
         <img class="driver-card__avatar" :src="driver?.team.avatar">
         <div class="driver-card__info">
             <span class="name">{{ driver?.name }}</span>
