@@ -68,15 +68,36 @@ nav {
 
 .nav__list__item > a:hover {
   opacity: 1;
-
 }
+
+.nav__list__item > a > .item__icon {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
   nav {
     position: fixed;
+    height: unset;
+    padding: unset;
     bottom: 0;
     left: 0;
     z-index: 100;
     box-shadow: rgba(0, 0, 0, 0.25) 0px -14px 28px, rgba(0, 0, 0, 0.22) 0px -10px 10px;
+  }
+
+  .nav__list__item {
+    position: relative;
+    width: calc(100% / 4);
+  }
+
+  .router-link-active::after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   ul>li>a {
@@ -95,6 +116,7 @@ nav {
 
   .nav__list__item > a > .item__icon {
     transform: scale(1.2);
+    display: block;
   }
 }
 
