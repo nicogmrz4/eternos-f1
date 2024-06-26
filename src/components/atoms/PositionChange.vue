@@ -61,12 +61,12 @@ const diffClasses = computed(() => {
 .diff--positive .icon {
   color: var(--success-color);
   max-width: 21;
-  top: -12px;
+  top: -14px;
 }
 
 .diff--negative .icon {
   color: var(--danger-color);
-  bottom: -12px;
+  bottom: -14px;
 }
 
 .without-diff {
