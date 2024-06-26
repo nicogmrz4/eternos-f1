@@ -2,8 +2,6 @@
 import { ref, type Ref } from 'vue';
 import teams from '@/static/teamsTable';
 import TeamCard from '@/components/TeamCard.vue';
-import type { DriverStatsInterface } from '@/interfaces/driverStats';
-import { calcDriversPoints } from '@/utils/caclDriversPoints';
 import { calcTeamPoints } from '@/utils/calcTeamPoints';
 import type { TeamInterface } from '@/interfaces/team';
 

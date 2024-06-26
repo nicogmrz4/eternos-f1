@@ -4,30 +4,50 @@ import { DriverStatsDTO } from "@/dto/driverStatsDTO";
 import points from "@/static/points";
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
 import type { DriverResultInterface } from "@/interfaces/driverResult";
+import type { Driver } from "@/dto/driverDTO";
+import type { DriverInterface } from "@/interfaces/driver";
 
 const MAX_POINTABLE_POSITIONS = 15;
+const MAX_POINTS_PER_GAINED_POSITION = 3;
+const CLEAN_RACE_POINTS = 2;
+const POLE_POINTS = 2;
 
-export function calcDriversPoints(): DriverStatsInterface[] {
+export function calcDriverStats(driver: DriverInterface): DriverStatsInterface {
+  const stats: DriverStatsDTO = new DriverStatsDTO(driver);
+  const racedTracks = tracks.filter((track) => track.isRaced == true);
+
+  racedTracks.forEach((track, i) => {
+    const result = track.result?.find((result) => result.driver.id == driver.id);
+    if (!result) return;
+    sumStats(stats, result);
+  });
+
+  return stats;
+}
+
+export function calcDriverPenultimateStats(driver: Driver): DriverStatsInterface {
+  const stats: DriverStatsDTO = new DriverStatsDTO(driver);
+  const racedTracks = tracks.filter((track) => track.isRaced == true);
+
+  racedTracks.splice(racedTracks.length - 1, 1);
+  racedTracks.forEach((track) => {
+    const result = track.result?.find((result) => result.driver.id == driver.id);
+    if (!result) return;
+    sumStats(stats, result);
+  });
+
+  return stats;
+}
+
+export function calcDriversStats(): DriverStatsInterface[] {
   let driverStats: DriverStatsDTO[] = [];
   drivers.forEach((driver) => {
-    let stats: DriverStatsDTO = new DriverStatsDTO(driver);
-
-    // Find each track that the driver has raced and plus his points
-    const racedTracks = tracks.filter((track) => track.isRaced == true);
-    racedTracks.forEach((track, i) => {
-      let result = track.result?.find(
-        (result) => result.driver.id == driver.id
-      );
-      if (!result) return;
-      sumStats(stats, result);
-    });
-
+    const stats: DriverStatsDTO = calcDriverStats(driver);
     driverStats.push(stats);
-
     driverStats = sortStats(driverStats);
   });
 
-  const penultimatePoints = calcDriversPenultimatePoints();
+  const penultimatePoints = calcDriversPenultimateStats();
   penultimatePoints.forEach((penultimate, i) => {
     driverStats.forEach(stats => {
       if (stats.driver.id == penultimate.driver.id && stats.races > 1) {
@@ -40,26 +60,13 @@ export function calcDriversPoints(): DriverStatsInterface[] {
   return driverStats;
 }
 
-export function calcDriversPenultimatePoints(): DriverStatsInterface[] {
+export function calcDriversPenultimateStats(): DriverStatsInterface[] {
   let driverStats: DriverStatsDTO[] = [];
   drivers.forEach((driver) => {
-    let stats: DriverStatsDTO = new DriverStatsDTO(driver);
-
-    // Find each track that the driver has raced and plus his points
-    let racedTracks = tracks.filter((track) => track.isRaced == true);
-    racedTracks.splice(racedTracks.length - 1, 1);
-    racedTracks.forEach((track) => {
-      let result = track.result?.find(
-        (result) => result.driver.id == driver.id
-      );
-      if (!result) return;
-      sumStats(stats, result);
-    });
-
+    const stats: DriverStatsDTO = calcDriverPenultimateStats(driver);
     driverStats.push(stats);
-
-    driverStats = sortStats(driverStats);
   });
+  driverStats = sortStats(driverStats);
   return driverStats;
 }
 
@@ -81,14 +88,14 @@ function sumStats(stats: DriverStatsInterface, result: DriverResultInterface) {
   if (result!.fastLap && result!.position <= MAX_POINTABLE_POSITIONS) stats.points++;
   if (result!.startingPosition == 1) {
     stats.poles++;
-    stats.points += 2;
+    stats.points += POLE_POINTS;
   }
   if (result!.position == 1) stats.wins++;
   if (result!.position <= 3) stats.podiums++;
   if (result!.startingPosition - result!.position > 0) {
-    stats.points += Math.min(3, result!.startingPosition - result!.position);
+    stats.points += Math.min(MAX_POINTS_PER_GAINED_POSITION, result!.startingPosition - result!.position);
   } 
-  if (result!.cleanRace) stats.points += 2;
+  if (result!.cleanRace) stats.points += CLEAN_RACE_POINTS;
   stats.results.push(result!.position);
 }
 
