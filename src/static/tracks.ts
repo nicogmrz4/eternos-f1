@@ -1,6 +1,7 @@
 import type { TrackInterface } from "@/interfaces/track"
 import { TrackDTO } from "@/dto/trackDTO"
 import { netherlandsGPResult } from "./results/netherlands"
+import { greatBritain } from "./results/great-britain"
 
 
 export default <TrackInterface[]> [
@@ -15,8 +16,8 @@ export default <TrackInterface[]> [
         'GP Gran Bretaña',
         'Circuito de Silverstone',
         'fi fi-gb',
-        false,
-        []
+        true,
+        greatBritain
     ),
     new TrackDTO(
         'GP España',
