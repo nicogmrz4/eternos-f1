@@ -3,6 +3,7 @@ import { TrackDTO } from "@/dto/trackDTO"
 import { netherlandsGPResult } from "./results/netherlands"
 import { greatBritain } from "./results/great-britain"
 import { spainGPResult } from "./results/spain"
+import { japanGPResult } from "./results/japan"
 
 
 export default <TrackInterface[]> [
@@ -31,8 +32,8 @@ export default <TrackInterface[]> [
         'GP Japón',
         'Circuito de Suzuka',
         'fi fi-jp',
-        false,
-        []
+        true,
+        japanGPResult
     ),
     new TrackDTO(
         'GP Mexico',
