@@ -41,7 +41,7 @@ const items = [
 nav {
   width: 100lvw;
   height: 60px;
-  background-color: #082479;
+  background-color: var(--card-color);
   padding: 1rem;
   display: flex;
   align-items: center;
