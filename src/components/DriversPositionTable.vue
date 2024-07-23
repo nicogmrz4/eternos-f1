@@ -2,16 +2,19 @@
 import DriverCard from '@/components/DriverCard.vue';
 import { ref, type Ref } from 'vue';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
-import { calcDriversStats } from '@/utils/calcDriversPoints';
+import DriverStatsModal from './molecules/DriverStatsModal.vue';
+import { useDriverStore } from '@/stores/driverStore';
 
-let driversStats: Ref<DriverStatsInterface[]> = ref(calcDriversStats());
+const { driversStats } = useDriverStore();
 </script>
 
-<template>
+<template>    
+    <DriverStatsModal />
     <div class="driver-cards__container">
         <DriverCard 
             v-for="driverStats, i in driversStats" :key="driverStats.driver.id"
             v-bind="driverStats" 
+            :driver-stats="driverStats" 
             :position="i + 1" 
         />
     </div>
