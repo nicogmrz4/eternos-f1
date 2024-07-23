@@ -4,6 +4,8 @@ import Points from './atoms/Points.vue'
 import PositionChange from './atoms/PositionChange.vue'
 import PositionAndDiff from './molecules/PositionAndDiff.vue'
 import { type DriverInterface } from '@/interfaces/driver';
+import { useDriverStore } from '@/stores/driverStore';
+import type { DriverStatsInterface } from '@/interfaces/driverStats';
 
 interface Props {
     driver: DriverInterface
@@ -15,15 +17,21 @@ interface Props {
     podiums: number
     races: number
     wins: number
+    driverStats: DriverStatsInterface
 }
 
 const props = defineProps<Props>();
 
 const showStats = ref(false);
+const driverStore = useDriverStore();
+const onClick = () => {
+    driverStore.setSourceDriver(props.driverStats);
+    driverStore.showDriverStatsModal();
+}
 </script>
 
 <template>
-    <div class="driver-card" @click="showStats = !showStats">
+    <div class="driver-card" @click="onClick">
         <PositionAndDiff :diff="lastPosition ? lastPosition - position! : 0" :position="position"/>
         <img class="driver-card__avatar" :src="driver?.team.avatar">
         <div class="driver-card__info">

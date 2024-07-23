@@ -20,6 +20,7 @@ import {
   LaGrinSolid,
   MdHealthandsafety,
   MdHealthandsafetyOutlined,
+  MdClose,
 } from "oh-vue-icons/icons";
 
 addIcons(
@@ -33,7 +34,8 @@ addIcons(
   MdInfooutline,
   MdWorkspacepremium,
   MdHealthandsafety,
-  MdHealthandsafetyOutlined
+  MdHealthandsafetyOutlined,
+  MdClose
 );
 
 const pinia = createPinia();

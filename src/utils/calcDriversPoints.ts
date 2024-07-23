@@ -6,6 +6,8 @@ import type { DriverStatsInterface } from "@/interfaces/driverStats";
 import type { DriverResultInterface } from "@/interfaces/driverResult";
 import type { Driver } from "@/dto/driverDTO";
 import type { DriverInterface } from "@/interfaces/driver";
+import { driverPositionAvg, driverStartPositionAvg } from "@/utils";
+
 
 const MAX_POINTABLE_POSITIONS = 15;
 const MAX_POINTS_PER_GAINED_POSITION = 3;
@@ -22,6 +24,11 @@ export function calcDriverStats(driver: DriverInterface): DriverStatsInterface {
     sumStats(stats, result);
   });
 
+  stats.positionAvg = driverPositionAvg(stats.results);
+  stats.startPositionAvg = driverStartPositionAvg(stats.results);
+  stats.pointsAvg = Number((stats.points / stats.races).toFixed(1));
+  stats.attendanceAvg = Number((stats.races * 100 / racedTracks.length).toFixed(1));
+
   return stats;
 }
 
@@ -35,6 +42,11 @@ export function calcDriverPenultimateStats(driver: Driver): DriverStatsInterface
     if (!result) return;
     sumStats(stats, result);
   });
+
+  stats.positionAvg = driverPositionAvg(stats.results);
+  stats.startPositionAvg = driverStartPositionAvg(stats.results);
+  stats.pointsAvg = Number((stats.points / stats.races).toFixed(2));
+  stats.attendanceAvg = Number((stats.races / racedTracks.length).toFixed(2));
 
   return stats;
 }
@@ -72,8 +84,8 @@ export function calcDriversPenultimateStats(): DriverStatsInterface[] {
 
 function whoHasBetterResults(a: DriverStatsInterface, b: DriverStatsInterface) {
   for (let i = 1; i <= 20; i++) {
-    const aResults = a.results.filter((result) => result == i).length;
-    const bResults = b.results.filter((result) => result == i).length;
+    const aResults = a.results.filter((result) => result.position == i).length;
+    const bResults = b.results.filter((result) => result.position == i).length;
     if (aResults == bResults) continue;
     return bResults - aResults;
   }
@@ -95,8 +107,11 @@ function sumStats(stats: DriverStatsInterface, result: DriverResultInterface) {
   if (result!.startingPosition - result!.position > 0) {
     stats.points += Math.min(MAX_POINTS_PER_GAINED_POSITION, result!.startingPosition - result!.position);
   } 
-  if (result!.cleanRace) stats.points += CLEAN_RACE_POINTS;
-  stats.results.push(result!.position);
+  if (result!.cleanRace) {
+    stats.points += CLEAN_RACE_POINTS;
+    stats.cleanRaces++;
+  }
+  stats.results.push(result!);
 }
 
 function sortStats(statsArr: DriverStatsInterface[]) {
