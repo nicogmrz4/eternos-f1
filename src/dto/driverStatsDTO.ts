@@ -20,4 +20,24 @@ export class DriverStatsDTO implements DriverStatsInterface
     public results: DriverResultInterface[] = [],
     public lastPosition: number | null = null
   ) {}
+
+  addStats(stats: DriverStatsInterface): void {
+    this.races += stats.races;
+    this.wins += stats.wins;
+    this.podiums += stats.podiums;
+    this.poles += stats.poles;
+    this.fastLaps += stats.fastLaps;
+    this.points += stats.points;
+    this.cleanRaces += stats.cleanRaces;
+  }
+
+  subtractStats(stats: DriverStatsInterface): void {
+    this.races -= stats.races;
+    this.wins -= stats.wins;
+    this.podiums -= stats.podiums;
+    this.poles -= stats.poles;
+    this.fastLaps -= stats.fastLaps;
+    this.points -= stats.points;
+    this.cleanRaces -= stats.cleanRaces;
+  }
 } 

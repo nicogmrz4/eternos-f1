@@ -16,4 +16,6 @@ export interface DriverStatsInterface {
   points: number
   results: DriverResultInterface[]
   lastPosition: number | null
+  addStats(stats: DriverStatsInterface): void
+  subtractStats(stats: DriverStatsInterface): void
 }

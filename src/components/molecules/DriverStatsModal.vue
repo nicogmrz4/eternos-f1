@@ -1,7 +1,7 @@
 <template>
   <Modal v-model="driverStatsModal" :title="modalTitle">
     <Transition name="stats" mode="out-in" :duration="{ enter: 500, leave: targetDriverStats ? 500 : 0 } ">
-      <div v-if="targetDriverStats" class="stats-comparison__container">
+      <div v-if="targetDriverStats" class="stats-comparison__container" :key="targetDriverStats.driver.id">
         <div class="header">
           <div class="header__driver-name">
             {{ sourceDriverStats?.driver.name }}

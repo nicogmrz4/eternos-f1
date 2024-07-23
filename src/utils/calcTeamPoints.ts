@@ -7,7 +7,7 @@ import {
 import teamsTable from "@/static/teamsTable";
 
 export function calcTeamPoints(): TeamInterface[] {
-  const driversStats: DriverStatsInterface[] = calcDriversStats();
+  const driversStats: DriverStatsInterface[][] = calcDriversStats();
   const driversPenultimateStats = calcDriversPenultimateStats();
 
   const teams: TeamInterface[] = teamsTable;
@@ -15,13 +15,13 @@ export function calcTeamPoints(): TeamInterface[] {
   teams.forEach(t => teamsPenultimatePoints.push(Object.assign({}, t)));
 
   teams.map((TeamInterface) => {
-    TeamInterface.points = driversStats
+    TeamInterface.points = driversStats[driversStats.length - 1]
       .filter((driverStats) => driverStats.driver.team.name == TeamInterface.name)
       .reduce((a, b) => a + b.points, 0);
   });
   
   teamsPenultimatePoints.map((TeamInterface) => {
-    TeamInterface.points = driversPenultimateStats
+    TeamInterface.points = driversStats[driversStats.length - 2]
       .filter((driverStats) => driverStats.driver.team.name == TeamInterface.name)
       .reduce((a, b) => a + b.points, 0);
   });

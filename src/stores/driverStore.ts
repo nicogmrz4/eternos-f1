@@ -3,8 +3,10 @@ import { calcDriversStats } from "@/utils/calcDriversPoints";
 import { defineStore } from "pinia";
 import { ref, type Ref } from "vue";
 
+const allDriversStats = calcDriversStats();
+
 export const useDriverStore = defineStore("driverStore", () => {
-  const driversStats: Ref<DriverStatsInterface[]> = ref(calcDriversStats());
+  const driversStats: Ref<DriverStatsInterface[]> = ref(allDriversStats[allDriversStats.length - 1]);
   const driverStatsModal: Ref<boolean> = ref(false);
   const compareWithModal: Ref<boolean> = ref(false);
   const sourceDriverStats: Ref<DriverStatsInterface | null> = ref(null);
