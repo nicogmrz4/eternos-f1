@@ -31,6 +31,7 @@ watch(control, () => {
     document.body.dataset.lockedByModal = uid;
   } else if (lockedBy === uid) {
     document.body.style.overflowY = 'auto';
+    delete document.body.dataset.lockedByModal;
   }
 });
 
