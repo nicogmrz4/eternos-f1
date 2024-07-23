@@ -1,11 +1,11 @@
 <template>
   <Transition name="modal-backdrop" :duration="600">
-    <div v-if="control" class="backdrop" @click="backdropCloseModal">
+    <div v-if="control" class="backdrop" @click.stop="backdropCloseModal">
       <div class="modal" tabindex="1">
         <header class="modal__header">
           <h2 class="modal__title">{{ title ?? 'Modal title' }}</h2>
           <span>
-            <v-icon class="modal__close" name="md-close" @click="control = false"></v-icon>
+            <v-icon class="modal__close" name="md-close" @click.stop="control = false"></v-icon>
           </span>
         </header>
         <slot></slot>
@@ -22,12 +22,14 @@ interface Props {
 }
 defineProps<Props>()
 const control = defineModel('modelValue', { type: Boolean, default: false })
-
+const uid = Math.random().toString(16).slice(2) 
 
 watch(control, () => {
-  if (control.value) {
+  const lockedBy = document.body.dataset.lockedByModal; 
+  if (control.value && lockedBy === undefined) {
     document.body.style.overflowY = 'hidden';
-  } else {
+    document.body.dataset.lockedByModal = uid;
+  } else if (lockedBy === uid) {
     document.body.style.overflowY = 'auto';
   }
 });
@@ -56,7 +58,7 @@ const backdropCloseModal = (e: MouseEvent) => {
   padding: 16px;
   position: relative;
   width: 390px;
-  height: 400px;
+  min-height: 100px;
   background-color: var(--card-color);
   border-radius: var(--card-border-radius);
   z-index: 110;
@@ -67,6 +69,7 @@ const backdropCloseModal = (e: MouseEvent) => {
 }
 
 .modal__title {
+  font-size: 20px;
   margin-top: 0;
 }
 
