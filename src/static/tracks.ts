@@ -4,6 +4,7 @@ import { netherlandsGPResult } from "./results/netherlands"
 import { greatBritain } from "./results/great-britain"
 import { spainGPResult } from "./results/spain"
 import { japanGPResult } from "./results/japan"
+import { mexicoGPResult } from "./results/mexico"
 
 
 export default <TrackInterface[]> [
@@ -39,8 +40,8 @@ export default <TrackInterface[]> [
         'GP Mexico',
         'Autodromo Hermanos Rodríguez',
         'fi fi-mx',
-        false,
-        []
+        true,
+        mexicoGPResult
     ),    
     new TrackDTO(
         'GP Canadá',
