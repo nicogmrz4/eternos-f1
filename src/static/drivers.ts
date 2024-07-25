@@ -33,6 +33,7 @@ export const LUCY = new Driver(17, 'Lucy', MERCEDES);
 export const BLADEBAHIA = new Driver(18, 'Bladebahia', MERCEDES);
 export const GROBA = new Driver(19, 'Groba', RENAULT);
 export const PIOR = new Driver(20, 'Pior', RENAULT);
+export const EL_COLIMBAA = new Driver(21, 'ElColimbaa', RACING_POINT);
 
 export const drivers = [
   COLO,
@@ -54,5 +55,6 @@ export const drivers = [
   LUCY,
   BLADEBAHIA,
   GROBA,
-  PIOR
+  PIOR,
+  EL_COLIMBAA
 ];
