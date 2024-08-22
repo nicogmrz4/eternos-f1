@@ -6,6 +6,7 @@ import { spainGPResult } from "./results/spain"
 import { japanGPResult } from "./results/japan"
 import { mexicoGPResult } from "./results/mexico"
 import { canadaGPResult } from "./results/canada"
+import { abuDabiGPResult } from "./results/abu-dabi"
 
 
 export default <TrackInterface[]> [
@@ -55,8 +56,8 @@ export default <TrackInterface[]> [
         'GP Emiratos Árabes',
         'Circuito Yas Marina',
         'fi fi-ae',
-        false,
-        []
+        true,
+        abuDabiGPResult
     ),    
     new TrackDTO(
         'GP Estados Unidos',
