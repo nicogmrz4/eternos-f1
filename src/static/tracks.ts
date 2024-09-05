@@ -1,14 +1,6 @@
 import type { TrackInterface } from "@/interfaces/track"
 import { TrackDTO } from "@/dto/trackDTO"
-import { netherlandsGPResult } from "./results/netherlands"
-import { greatBritain } from "./results/great-britain"
-import { spainGPResult } from "./results/spain"
-import { japanGPResult } from "./results/japan"
-import { mexicoGPResult } from "./results/mexico"
-import { canadaGPResult } from "./results/canada"
-import { abuDabiGPResult } from "./results/abu-dabi"
-import { usaGPResult } from "./results/usa"
-
+import * as results from "@/static/results"
 
 export default <TrackInterface[]> [
     new TrackDTO(
@@ -16,63 +8,63 @@ export default <TrackInterface[]> [
         'Circuito de Zandvoort',
         'fi fi-nl',
         true,
-        netherlandsGPResult
+        results.netherlandsGPResult
     ),
     new TrackDTO(
         'GP Gran Bretaña',
         'Circuito de Silverstone',
         'fi fi-gb',
         true,
-        greatBritain
+        results.greatBritain
     ),
     new TrackDTO(
         'GP España',
         'Circuito de Barcelona-Cataluña',
         'fi fi-es',
         true,
-        spainGPResult
+        results.spainGPResult
     ),
     new TrackDTO(
         'GP Japón',
         'Circuito de Suzuka',
         'fi fi-jp',
         true,
-        japanGPResult
+        results.japanGPResult
     ),
     new TrackDTO(
         'GP Mexico',
         'Autodromo Hermanos Rodríguez',
         'fi fi-mx',
         true,
-        mexicoGPResult
+        results.mexicoGPResult
     ),    
     new TrackDTO(
         'GP Canadá',
         'Circuito Gilles Villeneuve',
         'fi fi-ca',
         true,
-        canadaGPResult
+        results.canadaGPResult
     ),    
     new TrackDTO(
         'GP Emiratos Árabes',
         'Circuito Yas Marina',
         'fi fi-ae',
         true,
-        abuDabiGPResult
+        results.abuDabiGPResult
     ),    
     new TrackDTO(
         'GP Estados Unidos',
         'Circuito de las Américas',
         'fi fi-us',
         true,
-        usaGPResult
+        results.usaGPResult
     ),
     new TrackDTO(
         'GP Azerbaiyán',
         'Circuito callejero de Bakú',
         'fi fi-az',
-        false,
-        []
+        true,
+        results.azerbaijanGPResult
     ),    
     new TrackDTO(
         'GP Italia',
