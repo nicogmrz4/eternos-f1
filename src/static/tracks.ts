@@ -70,8 +70,8 @@ export default <TrackInterface[]> [
         'GP Italia',
         'Autodromo internacional de Monza',
         'fi fi-it',
-        false,
-        []
+        true,
+        results.italyGPResult
     ),
     new TrackDTO(
         'GP Bélgica',
