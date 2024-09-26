@@ -35,6 +35,7 @@ export const GROBA = new Driver(19, 'Groba', RENAULT);
 export const PIOR = new Driver(20, 'Pior', RENAULT);
 export const EL_COLIMBAA = new Driver(21, 'ElColimbaa', RACING_POINT);
 export const FACU = new Driver(22, 'Facu', MCLAREN);
+export const PEPPA = new Driver(23, 'Peppa', HAAS);
 
 export const drivers = [
   COLO,
@@ -59,4 +60,5 @@ export const drivers = [
   PIOR,
   FACU,
   EL_COLIMBAA,
+  PEPPA
 ];
