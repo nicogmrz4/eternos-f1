@@ -122,7 +122,7 @@ nav {
 
 .router-link-active {
   opacity: 1!important;
-    font-size: 14px;
-  }
+  font-size: 14px;
 }
+
 </style>
