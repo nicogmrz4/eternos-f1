@@ -1,16 +1,16 @@
 import * as drivers from "@/static/drivers"
-import { DriverResultDTO } from "@/dto/driverResultDTO"
+import { DriverResult } from "@/models/driverResult"
 
 export const belgiumGPResult = [
-	new DriverResultDTO(drivers.EMMA).setPos(1).setStartingPos(2),
-	new DriverResultDTO(drivers.DAMITOX).setPos(2).setStartingPos(1).setFastLap(),
-	new DriverResultDTO(drivers.SEBA_HUNTER).setPos(3).setStartingPos(9),
-	new DriverResultDTO(drivers.RYU).setPos(4).setStartingPos(5),
-	new DriverResultDTO(drivers.NICOGMERZ4).setPos(5).setStartingPos(4),
-	new DriverResultDTO(drivers.KURI).setPos(6).setStartingPos(3).setDNF(),
-	new DriverResultDTO(drivers.MAX).setPos(7).setStartingPos(7).setDNF(),
-	new DriverResultDTO(drivers.FACU).setPos(8).setStartingPos(11).setDNF(),
-	new DriverResultDTO(drivers.PEPPA).setPos(9).setStartingPos(6).setDNF(),
-	new DriverResultDTO(drivers.BLADEBAHIA).setPos(10).setStartingPos(8).setDNF(),
-	new DriverResultDTO(drivers.EMI).setPos(11).setStartingPos(10).setDNF(),
+	new DriverResult(drivers.EMMA).setPos(1).setStartingPos(2),
+	new DriverResult(drivers.DAMITOX).setPos(2).setStartingPos(1).setFastLap(),
+	new DriverResult(drivers.SEBA_HUNTER).setPos(3).setStartingPos(9),
+	new DriverResult(drivers.RYU).setPos(4).setStartingPos(5),
+	new DriverResult(drivers.NICOGMERZ4).setPos(5).setStartingPos(4),
+	new DriverResult(drivers.KURI).setPos(6).setStartingPos(3).setDNF(),
+	new DriverResult(drivers.MAX).setPos(7).setStartingPos(7).setDNF(),
+	new DriverResult(drivers.FACU).setPos(8).setStartingPos(11).setDNF(),
+	new DriverResult(drivers.PEPPA).setPos(9).setStartingPos(6).setDNF(),
+	new DriverResult(drivers.BLADEBAHIA).setPos(10).setStartingPos(8).setDNF(),
+	new DriverResult(drivers.EMI).setPos(11).setStartingPos(10).setDNF(),
 ];

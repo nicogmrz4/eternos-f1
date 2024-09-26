@@ -11,7 +11,7 @@ import {
   RENAULT,
   WILLIAMS,
 } from "./teams";
-import { Driver } from "@/dto/driverDTO";
+import { Driver } from "@/models/driver";
 
 export const COLO = new Driver(1, 'Colo', RED_BULL);
 export const EMI = new Driver(2, 'Emi', RED_BULL);

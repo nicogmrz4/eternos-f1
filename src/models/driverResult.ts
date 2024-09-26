@@ -1,7 +1,7 @@
 import type { DriverInterface } from "@/interfaces/driver";
 import type { DriverResultInterface } from "@/interfaces/driverResult";
 
-export class DriverResultDTO implements DriverResultInterface {
+export class DriverResult implements DriverResultInterface {
   public position: number = 0;
   public startingPosition: number = 0;
   public fastLap: boolean = false;

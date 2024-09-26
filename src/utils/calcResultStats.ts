@@ -1,10 +1,10 @@
-import { DriverStatsDTO } from "@/dto/driverStatsDTO";
+import { DriverStats } from "@/models/driverStats";
 import type { DriverResultInterface } from "@/interfaces/driverResult";
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
 import { positions } from "@/utils";
 
 export function calcResultStats(result: DriverResultInterface): DriverStatsInterface {
-  const stats = new DriverStatsDTO(result.driver);
+  const stats = new DriverStats(result.driver);
   stats.races++;
   if (result.dnf) return stats;
   if (result.fastLap) stats.fastLaps++;

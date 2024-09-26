@@ -1,12 +1,12 @@
 import type { TrackInterface } from "@/interfaces/track";
-import type { DriverResultDTO } from "./driverResultDTO";
+import type { DriverResult } from "./driverResult";
 
-export class TrackDTO implements TrackInterface{
+export class Track implements TrackInterface{
   constructor(
     public name: string,
     public circuit: string,
     public flag: string,
     public isRaced: boolean,
-    public result: DriverResultDTO[]
+    public result: DriverResult[]
   ){}
 }

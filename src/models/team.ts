@@ -1,6 +1,6 @@
 import type { TeamInterface } from "@/interfaces/team";
 
-export class TeamDTO implements TeamInterface {
+export class Team implements TeamInterface {
   constructor(
     public name: string,
     public avatar: string,

@@ -1,6 +1,6 @@
 // import type { DriverResultInterface } from "@/interfaces/driverResult"
 // import * as drivers from "../drivers"
-// import { DriverResultDTO } from "@/dto/driverResultDTO"
+// import { DriverResultDTO } from "@/models/driverResultDTO"
 
 // export const belgiumGPResult: DriverResultInterface[] = [
 //   new DriverResultDTO(1, 5, false, false, drivers.OLIVIA),

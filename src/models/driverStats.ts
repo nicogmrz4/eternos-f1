@@ -2,7 +2,7 @@ import type { DriverInterface } from "@/interfaces/driver";
 import type { DriverResultInterface } from "@/interfaces/driverResult";
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
 
-export class DriverStatsDTO implements DriverStatsInterface
+export class DriverStats implements DriverStatsInterface
 {
   constructor(
     public driver: DriverInterface, 
