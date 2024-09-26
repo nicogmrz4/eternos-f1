@@ -77,8 +77,8 @@ export default <TrackInterface[]> [
         'GP Bélgica',
         'Circuito de Spa-Francorchamps',
         'fi fi-be',
-        false,
-        []
+        true,
+        results.belgiumGPResult
     ),
     new TrackDTO(
         'GP Singapur',
