@@ -1,4 +1,5 @@
 import type { DriverInterface } from "@/interfaces/driver";
+import type { DriverResultInterface } from "./driverResult";
 
 export interface DriverStatsInterface {
   driver: DriverInterface
@@ -7,5 +8,14 @@ export interface DriverStatsInterface {
   podiums: number
   fastLaps: number
   poles: number
+  cleanRaces: number
+  attendanceAvg: number
+  pointsAvg: number
+  startPositionAvg: number
+  positionAvg: number
   points: number
+  results: DriverResultInterface[]
+  lastPosition: number | null
+  addStats(stats: DriverStatsInterface): void
+  subtractStats(stats: DriverStatsInterface): void
 }

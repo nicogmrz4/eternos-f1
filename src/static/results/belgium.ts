@@ -1,17 +1,16 @@
-import type { DriverResultInterface } from "@/interfaces/driverResult"
-import * as drivers from "../drivers"
+import * as drivers from "@/static/drivers"
 import { DriverResultDTO } from "@/dto/driverResultDTO"
 
-export const belgiumGPResult: DriverResultInterface[] = [
-  new DriverResultDTO(1, 5, false, false, drivers.OLIVIA),
-  new DriverResultDTO(2, 2, true, false, drivers.ALEXANDER),
-  new DriverResultDTO(3, 1, false, false, drivers.AVA),
-  new DriverResultDTO(4, 6, false, false, drivers.JAMES),
-  new DriverResultDTO(5, 7, false, false, drivers.EMMA),
-  new DriverResultDTO(6, 5, false, false, drivers.JOHN),
-  new DriverResultDTO(7, 4, false, false, drivers.MICHAEL),
-  new DriverResultDTO(8, 3, false, false, drivers.WILLIAM),
-  new DriverResultDTO(7, 11, false, true, drivers.GABRIEL),
-  new DriverResultDTO(10, 10, false, true, drivers.SOFIA),
-  new DriverResultDTO(11, 8, false, true, drivers.MIA),
-]
+export const belgiumGPResult = [
+	new DriverResultDTO(drivers.EMMA).setPos(1).setStartingPos(2),
+	new DriverResultDTO(drivers.DAMITOX).setPos(2).setStartingPos(1).setFastLap(),
+	new DriverResultDTO(drivers.SEBA_HUNTER).setPos(3).setStartingPos(9),
+	new DriverResultDTO(drivers.RYU).setPos(4).setStartingPos(5),
+	new DriverResultDTO(drivers.NICOGMERZ4).setPos(5).setStartingPos(4),
+	new DriverResultDTO(drivers.KURI).setPos(6).setStartingPos(3).setDNF(),
+	new DriverResultDTO(drivers.MAX).setPos(7).setStartingPos(7).setDNF(),
+	new DriverResultDTO(drivers.FACU).setPos(8).setStartingPos(11).setDNF(),
+	new DriverResultDTO(drivers.PEPPA).setPos(9).setStartingPos(6).setDNF(),
+	new DriverResultDTO(drivers.BLADEBAHIA).setPos(10).setStartingPos(8).setDNF(),
+	new DriverResultDTO(drivers.EMI).setPos(11).setStartingPos(10).setDNF(),
+];

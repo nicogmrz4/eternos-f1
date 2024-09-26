@@ -1,29 +1,42 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Points from './atoms/Points.vue'
+import PositionChange from './atoms/PositionChange.vue'
+import PositionAndDiff from './molecules/PositionAndDiff.vue'
 import { type DriverInterface } from '@/interfaces/driver';
+import { useDriverStore } from '@/stores/driverStore';
+import type { DriverStatsInterface } from '@/interfaces/driverStats';
 
-const props = defineProps({
-    driver: Object as () => DriverInterface,
-    poles: Number,
-    points: Number,
-    fastLaps: Number,
-    position: Number,
-    podiums: Number,
-    races: Number,
-    wins: Number,
-});
+interface Props {
+    driver: DriverInterface
+    poles: number
+    points: number
+    fastLaps: number
+    position: number
+    lastPosition: number | null,
+    podiums: number
+    races: number
+    wins: number
+    driverStats: DriverStatsInterface
+}
+
+const props = defineProps<Props>();
 
 const showStats = ref(false);
+const driverStore = useDriverStore();
+const onClick = () => {
+    driverStore.setSourceDriver(props.driverStats);
+    driverStore.showDriverStatsModal();
+}
 </script>
 
 <template>
-    <div class="driver-card" @click="showStats = !showStats">
-        <span class="driver-card__position">{{ position }}</span>
-        <img class="driver-card__avatar" :src="driver?.avatar">
+    <div class="driver-card" @click="onClick">
+        <PositionAndDiff :diff="lastPosition ? lastPosition - position! : 0" :position="position"/>
+        <img class="driver-card__avatar" :src="driver?.team.avatar">
         <div class="driver-card__info">
             <span class="name">{{ driver?.name }}</span>
-            <span class="team card-text-muted">{{ driver?.team }}</span>
+            <span class="team card-text-muted">{{ driver?.team.name }}</span>
         </div>
         <Points class="driver-card__points" :points="points" />
         <Transition>
@@ -68,22 +81,18 @@ const showStats = ref(false);
     cursor: pointer;
 }
 
-.driver-card__position {
-    width: 25px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 900;
-}
-
 .driver-card__avatar {
     width: 40px;
     height: 40px;
-    border-radius: 10%;
+    object-fit: contain;
     margin-bottom: 0;
+    object-fit: contain;
 }
 
 .driver-card__info {
     display: flex;
+    width: 100%;
+    max-width: 150px;
     flex-direction: column;
     justify-content: center;
 }

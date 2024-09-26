@@ -1,6 +1,7 @@
+import type { TeamInterface } from "./team"
+
 export interface DriverInterface {
-  id: number,
-  avatar: string
+  id: number
   name: string
-  team: string
+  team: TeamInterface
 }

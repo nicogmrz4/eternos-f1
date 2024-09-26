@@ -1,22 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import teams from '@/static/teamsTable';
 import TeamCard from '@/components/TeamCard.vue';
-import type { DriverStatsInterface } from '@/interfaces/driverStats';
-import { calcDriversPoints } from '@/utils/caclDriversPoints';
+import { calcTeamPoints } from '@/utils/calcTeamPoints';
+import type { TeamInterface } from '@/interfaces/team';
 
-const data = ref(teams);
-let driversStats: DriverStatsInterface[] = calcDriversPoints();
-
-// Calculate total points per team
-data.value.map((team: any) => {
-  team.points = driversStats.filter(driverStats => driverStats.driver.team == team.name).reduce((a, b) => a + b.points, 0);
-});
-
-// Sort teams by points
-data.value.sort((a, b) => {
-  return b.points - a.points;
-})
+const data: Ref<TeamInterface[]> = ref(calcTeamPoints());
 
 </script>
 

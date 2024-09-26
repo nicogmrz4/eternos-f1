@@ -1,22 +1,47 @@
 <template>
   <nav>
-    <ul>
-      <li><RouterLink to="/">Pilotos</RouterLink></li>
-      <li><RouterLink to="/teams-championship">Equipos</RouterLink></li>
-      <li><RouterLink to="/calendar">Calendario</RouterLink></li>
+    <ul class="nav__list">
+      <li v-for="item in items" class="nav__list__item">
+        <RouterLink :to="item.to">
+          <v-icon :name="item.icon" :scale="item.scale" class="item__icon"></v-icon>
+          {{ item.title }}
+        </RouterLink>
+      </li>
     </ul>
   </nav>
 </template>
 
 <script setup lang="ts">
-
+const items = [
+  {
+    title: 'Pilotos',
+    to: '/',
+    icon: 'gi-full-motorcycle-helmet',
+    scale: 1.1
+  },
+  {
+    title: 'Equipos',
+    to: '/teams-championship',
+    icon: 'ri-shield-fill'
+  },
+  {
+    title: 'Calendario',
+    to: '/calendar',
+    icon: 'io-calendar-sharp'
+  },
+  {
+    title: 'Reglas',
+    to: '/rules',
+    icon: 'md-infooutline'
+  }
+]
 </script>
 
 <style scoped>
 nav {
-  width: 100%;
+  width: 100lvw;
   height: 60px;
-  background-color: #082479;
+  background-color: var(--card-color);
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -24,16 +49,16 @@ nav {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-ul {
+.nav__list {
   list-style: none;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
 
-ul > li > a {
+.nav__list__item > a {
   text-decoration: none;
   color: white;
   padding: 1em;
@@ -41,31 +66,62 @@ ul > li > a {
   transition: opacity 200ms ease-in;
 }
 
-ul > li > a:hover {
-  opacity: .8;
-  
+.nav__list__item > a:hover {
+  opacity: 1;
 }
 
-.router-link-active {
-  opacity: 1;
+.nav__list__item > a > .item__icon {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
   nav {
     position: fixed;
+    height: unset;
+    padding: unset;
     bottom: 0;
     left: 0;
     z-index: 100;
     box-shadow: rgba(0, 0, 0, 0.25) 0px -14px 28px, rgba(0, 0, 0, 0.22) 0px -10px 10px;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
   }
-  ul > li > a {
+
+  .nav__list__item {
+    position: relative;
+    width: calc(100% / 4);
+  }
+
+  .router-link-active::after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  ul>li>a {
     text-decoration: none;
     color: white;
-    padding: 1em;
+    padding: .8em;
     opacity: .5;
     transition: opacity 200ms ease-in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .3rem;
+    font-size: 12px;
+  }
+
+  .nav__list__item > a > .item__icon {
+    transform: scale(1.2);
+    display: block;
+  }
+}
+
+.router-link-active {
+  opacity: 1!important;
     font-size: 14px;
   }
 }
