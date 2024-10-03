@@ -84,8 +84,8 @@ export default <TrackInterface[]> [
         'GP Singapur',
         'Circuito callejero de Marina Bay',
         'fi fi-sg',
-        false,
-        []
+        true,
+        results.singaporeGPResult
     ),
     new TrackDTO(
         'GP Vietnam',
