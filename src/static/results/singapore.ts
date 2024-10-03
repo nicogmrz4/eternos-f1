@@ -3,7 +3,7 @@ import { DriverResultDTO } from "@/dto/driverResultDTO"
 
 export const singaporeGPResult = [
 	new DriverResultDTO(drivers.DAMITOX).setPos(1).setStartingPos(2),
-	new DriverResultDTO(drivers.FACU).setPos(2).setStartingPos(1).setFastLap(),
+	new DriverResultDTO(drivers.FACU).setPos(2).setStartingPos(1).setFastLap().noCleanRace(),
 	new DriverResultDTO(drivers.EMMA).setPos(3).setStartingPos(3),
 	new DriverResultDTO(drivers.NICOGMERZ4).setPos(4).setStartingPos(4),
 	new DriverResultDTO(drivers.KURI).setPos(5).setStartingPos(5),
