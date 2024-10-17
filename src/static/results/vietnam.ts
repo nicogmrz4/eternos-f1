@@ -10,5 +10,5 @@ export const vietnamGPResult = [
 	new DriverResultDTO(drivers.KURI).setPos(6).setStartingPos(7),
 	new DriverResultDTO(drivers.JULIAN_SOSA).setPos(7).setStartingPos(3),
 	new DriverResultDTO(drivers.MAX).setPos(8).setStartingPos(8),
-	new DriverResultDTO(drivers.EMI).setPos(9).setStartingPos(9),
+	new DriverResultDTO(drivers.EMI).setPos(9).setStartingPos(9).setDNF(),
 ];
