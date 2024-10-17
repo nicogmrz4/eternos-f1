@@ -92,7 +92,7 @@ export default <TrackInterface[]> [
         'Circuito callejero de Hanói',
         'fi fi-vn',
         false,
-        []
+        results.vietnamGPResult
     ),
     new TrackDTO(
         'GP Australia',
