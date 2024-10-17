@@ -91,7 +91,7 @@ export default <TrackInterface[]> [
         'GP Vietnam',
         'Circuito callejero de Hanói',
         'fi fi-vn',
-        false,
+        true,
         results.vietnamGPResult
     ),
     new TrackDTO(
