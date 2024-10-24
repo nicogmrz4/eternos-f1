@@ -98,7 +98,7 @@ export default <TrackInterface[]> [
         'GP Australia',
         'Circuito de Albert Park',
         'fi fi-au',
-        false,
-        []
+        true,
+        results.australiaGPResult
     ),
 ]
