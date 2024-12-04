@@ -18,60 +18,52 @@ const showResult = ref(false);
 </script>
 
 <template>
-    <div :class="['track-card', isRaced ? 'pointer' : ' ']" @click="showResult = !showResult">
-        <span class="track-card__order">#{{ order }}</span>
-        <span :class="[flag, 'track-card__flag']"></span>
-        <div class="track-card__info">
-            <div class="name">{{ name }}</div>
-            <div class="circuit card-text-muted">{{ circuit }}</div>
-        </div>
-        <Badge class="track-card__status" :color="isRaced ? 'success' : 'pending'">
-            {{ isRaced ? 'Completada' : 'Pendiente' }}
-        </Badge>
-        <Transition>
-            <div v-if="showResult && isRaced" class="track-card__result">
-                <!-- <div v-for="r in result" :key="r.driver.id"
-                    :class="['driver-result', r.dnf ? 'dnf' : '']">
-                    <span class="pos">{{ r.dnf ? 'DNF' : r.position }}</span>
-                    <span class="name">{{ r.driver.name }}</span>
-                    <div v-if="!r.dnf" class="icons">
-                        <PositionChangeMini :position="r.position" :start-position="r.startingPosition"/>
-                        <v-icon v-if="r.cleanRace" name="md-healthandsafety-outlined" scale="1.2" class="clean-race"></v-icon> 
-                        <v-icon v-if="r.startingPosition == 1" name="md-workspacepremium" scale="1.2" class="pole"></v-icon> 
-                        <v-icon v-if="r.fastLap" name="oi-stopwatch" scale="1.3"></v-icon> 
-                    </div>
-                </div> -->
-
-                <div class="table__container">
-                    <table>
-                        <tbody>
-                            <tr v-for="r in result" :key="r.driver.id" :class="[r.dnf ? 'dnf' : '']">
-                                <td class="pos__col">{{ r.position }}</td>
-                                <td class="name__col">{{ r.driver.name }}</td>
-                                <td class="diff__col">
-                                    <template v-if="r.dnf">
-                                        <span class="dnf">DNF</span>
-                                    </template>
-                                    <template v-else>
-                                        <PositionChangeMini :position="r.position"
-                                            :start-position="r.startingPosition" />
-                                    </template>
-                                </td>
-                                <td class="icons__col">
-                                    <template v-if="!r.dnf">
-                                        <v-icon v-if="r.cleanRace" name="md-healthandsafety-outlined" scale="1.2"
-                                            class="clean-race"></v-icon>
-                                        <v-icon v-if="r.startingPosition == 1" name="md-workspacepremium" scale="1.2"
-                                            class="pole"></v-icon>
-                                        <v-icon v-if="r.fastLap" name="oi-stopwatch" scale="1.3"></v-icon>
-                                    </template>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <div class="track-card__container">
+        <div :class="['track-card', isRaced ? 'pointer' : ' ']" @click="showResult = !showResult">
+            <span class="track-card__order">
+                #{{ order }}
+            </span>
+            <span :class="[flag, 'track-card__flag']"></span>
+            <div class="track-card__info">
+                <div class="name">{{ name }}</div>
+                <div class="circuit card-text-muted">{{ circuit }}</div>
             </div>
-        </Transition>
+            <Badge class="track-card__status" :color="isRaced ? 'success' : 'pending'">
+                {{ isRaced ? 'Completada' : 'Pendiente' }}
+            </Badge>
+            <Transition>
+                <div v-if="showResult && isRaced" class="track-card__result">
+                    <div class="table__container">
+                        <table>
+                            <tbody>
+                                <tr v-for="r in result" :key="r.driver.id" :class="[r.dnf ? 'dnf' : '']">
+                                    <td class="pos__col">{{ r.position }}</td>
+                                    <td class="name__col">{{ r.driver.name }}</td>
+                                    <td class="diff__col">
+                                        <template v-if="r.dnf">
+                                            <span class="dnf">DNF</span>
+                                        </template>
+                                        <template v-else>
+                                            <PositionChangeMini :position="r.position"
+                                                :start-position="r.startingPosition" />
+                                        </template>
+                                    </td>
+                                    <td class="icons__col">
+                                        <template v-if="!r.dnf">
+                                            <v-icon v-if="r.cleanRace" name="md-healthandsafety-outlined" scale="1.2"
+                                                class="clean-race"></v-icon>
+                                            <v-icon v-if="r.startingPosition == 1" name="md-workspacepremium"
+                                                scale="1.2" class="pole"></v-icon>
+                                            <v-icon v-if="r.fastLap" name="oi-stopwatch" scale="1.3"></v-icon>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </Transition>
+        </div>
     </div>
 </template>
 
@@ -101,13 +93,33 @@ table .icons__col {
     text-align: left;
 }
 
+.track-card__container {
+    display: flex;
+    align-items: center;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    gap: .25em;
+}
+
+.track-card__container::after {
+    content: "";
+    flex: 0 0 100%;
+    width: 100%;
+    border-bottom: 1px solid var(--card-color);
+}
+
+.track-card__container:last-child::after {
+    border-bottom: none;
+}
+
 .track-card {
+    flex: auto;
     display: flex;
     flex-wrap: wrap;
-    background-color: var(--card-color);
+    /* background-color: var(--card-color); */
     align-items: center;
     gap: var(--card-padding);
-    background-color: var(--card-color);
+    /* background-color: var(--card-color); */
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
@@ -125,7 +137,7 @@ table .icons__col {
 .track-card__order {
     width: 35px;
     font-size: 20px;
-    font-weight: 700;
+    /* font-weight: 700; */
 }
 
 .track-card__info {
@@ -148,7 +160,7 @@ table .icons__col {
     box-sizing: content-box;
     font-size: 28px;
     border-radius: 10%;
-    border: 2px solid #fff;
+    margin-right: 4px;
 }
 
 .track-card__status {

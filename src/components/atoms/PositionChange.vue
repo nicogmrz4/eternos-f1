@@ -41,12 +41,13 @@ const diffClasses = computed(() => {
 
 <style scoped>
 .diff {
-  width: 40px;
-  font-weight: 700;
+  width: 2ch;
+  height: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .diff .value {
@@ -64,16 +65,16 @@ const diffClasses = computed(() => {
 .diff--positive .icon {
   color: var(--success-color);
   max-width: 21;
-  top: -14px;
+  top: -0.6em;
 }
 
 .diff--negative .icon {
   color: var(--danger-color);
-  bottom: -14px;
+  bottom: -0.6em;
 }
 
 .without-diff {
-  width: 16px;
+  width: 12px;
   height: 3px;
   background-color: white;
 }
