@@ -4,13 +4,6 @@ import Navbar from '@/components/Navbar.vue'
 import { useGlobalStore } from '@/stores/globalStore';
 import { onMounted } from 'vue';
 
-const globalStore = useGlobalStore();
-
-onMounted(() => {
-  setInterval(() => {
-    globalStore.toggleShowPositions();
-  }, 3000);
-});
 </script>
 
 <template>
