@@ -1,18 +1,28 @@
 <script setup lang="ts">
 import DriverCard from '@/components/DriverCard.vue';
-import { ref, type Ref } from 'vue';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
 import DriverStatsModal from './molecules/DriverStatsModal.vue';
 import { useDriverStore } from '@/stores/driverStore';
+import { useGlobalStore } from '@/stores/globalStore';
+import { onMounted, ref, type Ref } from 'vue';
+import { calcDriversStats } from '@/utils/calcDriversPoints';
 
-const { driversStats } = useDriverStore();
+const driversStats: Ref<DriverStatsInterface[]> = ref([]);
+const { fetchTracks } = useGlobalStore();
+
+onMounted(async () => {
+    const { tracks, drivers } = await fetchTracks();
+    const historyStats = calcDriversStats(tracks, drivers);
+    driversStats.value = historyStats[historyStats.length - 1];
+});
 </script>
 
-<template>    
+<template>
     <DriverStatsModal />
     <div class="driver-cards__container">
         <DriverCard 
-            v-for="driverStats, i in driversStats" :key="driverStats.driver.id"
+            v-for="driverStats, i in driversStats"
+            :key="i"
             v-bind="driverStats" 
             :driver-stats="driverStats" 
             :position="i + 1" 

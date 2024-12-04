@@ -1,17 +1,24 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import teams from '@/static/teamsTable';
+import { onMounted, ref, type Ref } from 'vue';
 import TeamCard from '@/components/TeamCard.vue';
+import type { TeamStats } from '@/dto/teamStats';
 import { calcTeamPoints } from '@/utils/calcTeamPoints';
-import type { TeamInterface } from '@/interfaces/team';
+import { calcDriversStats } from '@/utils/calcDriversPoints';
+import { useGlobalStore } from '@/stores/globalStore';
 
-const data: Ref<TeamInterface[]> = ref(calcTeamPoints());
+const teamsStats: Ref<TeamStats[]> = ref([]);
+const { fetchTracks } = useGlobalStore();
 
+onMounted(async () => {
+  const { tracks, drivers, teams } = await fetchTracks();
+  const historyStats = calcDriversStats(tracks, drivers);
+  teamsStats.value = calcTeamPoints(historyStats, teams);
+})
 </script>
 
 <template>
   <div class="team-cards__container">
-    <TeamCard v-for="team, i in teams" :key="team.name" v-bind="team" :position="i + 1" />
+    <TeamCard v-for="teamStats, i in teamsStats" :key="teamStats.team.name" v-bind="teamStats" :position="i + 1" />
   </div>
 </template>
 

@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 import tracks from '@/static/tracks';
 import TrackCard from '@/components/TrackCard.vue'
+import type { TrackInterface } from '@/interfaces/track';
+import { useGlobalStore } from '@/stores/globalStore';
 
-const data = ref(tracks);
+const data: Ref<TrackInterface[]> = ref(tracks);
+const { fetchTracks } = useGlobalStore();
+
+onMounted(async () => {
+    const { tracks } = await fetchTracks();
+    data.value = tracks
+});
 </script>
 
 <template>

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
-import { useGlobalStore } from '@/stores/globalStore';
-import { onMounted } from 'vue';
 
 </script>
 
