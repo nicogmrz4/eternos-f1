@@ -10,7 +10,7 @@ interface Props {
     circuit: string,
     flag: string,
     isRaced: boolean,
-    result: DriverResultInterface[]
+    results: DriverResultInterface[]
 }
 
 const props = defineProps<Props>();
@@ -23,7 +23,7 @@ const showResult = ref(false);
             <span class="track-card__order">
                 #{{ order }}
             </span>
-            <span :class="[flag, 'track-card__flag']"></span>
+            <span :class="['fi ' + flag, 'track-card__flag']"></span>
             <div class="track-card__info">
                 <div class="name">{{ name }}</div>
                 <div class="circuit card-text-muted">{{ circuit }}</div>
@@ -36,12 +36,12 @@ const showResult = ref(false);
                     <div class="table__container">
                         <table>
                             <tbody>
-                                <tr v-for="r in result" :key="r.driver.id" :class="[r.dnf ? 'dnf' : '']">
+                                <tr v-for="r in results" :key="r.driver.id" :class="[r.dnf ? 'dnf' : '']">
                                     <td class="pos__col">{{ r.position }}</td>
                                     <td class="name__col">{{ r.driver.name }}</td>
                                     <td class="diff__col">
                                         <template v-if="r.dnf">
-                                            <span class="dnf">DNF</span>
+                                            <span class="dnf">DNF ({{ r.startingPosition }})</span>
                                         </template>
                                         <template v-else>
                                             <PositionChangeMini :position="r.position"
