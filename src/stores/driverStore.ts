@@ -4,6 +4,7 @@ import { ref, type Ref } from "vue";
 
 export const useDriverStore = defineStore("driverStore", () => {
   const driversStats = ref<DriverStatsInterface[]>([]);
+  const driversStatsHistory = ref<DriverStatsInterface[][]>([]);
   const driverStatsModal: Ref<boolean> = ref(false);
   const compareWithModal: Ref<boolean> = ref(false);
   const sourceDriverStats: Ref<DriverStatsInterface | null> = ref(null);
@@ -33,8 +34,19 @@ export const useDriverStore = defineStore("driverStore", () => {
     targetDriverStats.value = null;
   }
 
+  const setDriversStats = function(val: DriverStatsInterface[]) {
+    driversStats.value = val;
+  }
+
+  const setDriversStatsHistory = function(val: DriverStatsInterface[][]) {
+    driversStatsHistory.value = val;
+  }
+
   return {
     driversStats,
+    setDriversStats,
+    driversStatsHistory,
+    setDriversStatsHistory,
     driverStatsModal,
     compareWithModal,
     sourceDriverStats,

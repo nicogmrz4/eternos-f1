@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from 'vue';
 import TrackCard from '@/components/TrackCard.vue'
-import type { TrackInterface } from '@/interfaces/track';
 import { useGlobalStore } from '@/stores/globalStore';
+import { storeToRefs } from 'pinia';
 
-const data: Ref<TrackInterface[]> = ref([]);
-const { fetchTracks } = useGlobalStore();
-
-onMounted(async () => {
-    const { tracks } = await fetchTracks();
-    data.value = tracks
-});
+const { tracks } = storeToRefs(useGlobalStore());
 </script>
 
 <template>
     <div class="tracks-list__container">
-        <TrackCard v-for="track, i in data" :key="track.name" v-bind="track" :order="i + 1" />
+        <TrackCard v-for="track, i in tracks" :key="track.name" v-bind="track" :order="i + 1" />
     </div>
 </template>
 

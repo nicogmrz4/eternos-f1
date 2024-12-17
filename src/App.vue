@@ -1,7 +1,23 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import Navbar from '@/components/Navbar.vue'
+import { onMounted } from 'vue';
+import { useGlobalStore } from './stores/globalStore';
+import { calcDriversStats } from '@/utils/calcDriversPoints';
+import { useDriverStore } from './stores/driverStore';
 
+const { fetchTracks, setTeams, setTracks } = useGlobalStore();
+const { setDriversStats, setDriversStatsHistory } = useDriverStore();
+
+onMounted(async () => {
+    console.log('App mounted');
+    const { tracks, drivers, teams } = await fetchTracks();
+    const driversStatsHistory = calcDriversStats(tracks, drivers);
+    setDriversStatsHistory(driversStatsHistory);
+    setDriversStats(driversStatsHistory[driversStatsHistory.length - 1]); // Last index is the most recent data
+    setTeams(teams);
+    setTracks(tracks);
+});
 </script>
 
 <template>

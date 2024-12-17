@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import DriverCard from '@/components/DriverCard.vue';
-import type { DriverStatsInterface } from '@/interfaces/driverStats';
 import DriverStatsModal from './molecules/DriverStatsModal.vue';
 import { useDriverStore } from '@/stores/driverStore';
-import { useGlobalStore } from '@/stores/globalStore';
-import { onMounted, ref, type Ref } from 'vue';
-import { calcDriversStats } from '@/utils/calcDriversPoints';
+import { storeToRefs } from 'pinia';
 
-const driversStats: Ref<DriverStatsInterface[]> = ref([]);
-const { fetchTracks } = useGlobalStore();
+const driverStore = useDriverStore();
+const { driversStats } = storeToRefs(useDriverStore());
 
-onMounted(async () => {
-    const { tracks, drivers } = await fetchTracks();
-    const historyStats = calcDriversStats(tracks, drivers);
-    driversStats.value = historyStats[historyStats.length - 1];
-});
 </script>
 
 <template>

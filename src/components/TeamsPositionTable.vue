@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from 'vue';
+import { onMounted, ref, watch, type Ref } from 'vue';
 import TeamCard from '@/components/TeamCard.vue';
 import type { TeamStats } from '@/dto/teamStats';
 import { calcTeamPoints } from '@/utils/calcTeamPoints';
-import { calcDriversStats } from '@/utils/calcDriversPoints';
 import { useGlobalStore } from '@/stores/globalStore';
+import { storeToRefs } from 'pinia';
+import { useDriverStore } from '@/stores/driverStore';
 
 const teamsStats: Ref<TeamStats[]> = ref([]);
-const { fetchTracks } = useGlobalStore();
+const { driversStatsHistory } = storeToRefs(useDriverStore());
+const { teams } = storeToRefs(useGlobalStore());
+
+watch(teams, () => {
+  teamsStats.value = calcTeamPoints(driversStatsHistory.value, teams.value);
+});
 
 onMounted(async () => {
-  const { tracks, drivers, teams } = await fetchTracks();
-  const historyStats = calcDriversStats(tracks, drivers);
-  teamsStats.value = calcTeamPoints(historyStats, teams);
-})
+  teamsStats.value = calcTeamPoints(driversStatsHistory.value, teams.value);
+});
 </script>
 
 <template>
   <div class="team-cards__container">
-    <TeamCard v-for="teamStats, i in teamsStats" :key="teamStats.team.name" v-bind="teamStats" :position="i + 1" />
+    <TeamCard v-for="teamStats, i in teamsStats" :key="i" v-bind="teamStats" :position="i + 1" />
   </div>
 </template>
 
