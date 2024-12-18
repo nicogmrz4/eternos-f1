@@ -36,7 +36,7 @@ const onClick = () => {
         <Position :position="position" />
         <PositionChange :diff="lastPosition ? lastPosition - position! : 0" />
         <div class="driver-card" @click="onClick">
-            <img class="driver-card__avatar" :src="driver?.team.avatar">
+            <img class="driver-card__avatar" :src="driver?.team.avatar || '/f1-teams/shield-cross.svg'">
             <div class="driver-card__info">
                 <span class="name">{{ driver?.name }}</span>
                 <span class="team card-text-muted">{{ driver?.team.name }}</span>
