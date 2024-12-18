@@ -44,6 +44,7 @@ const onClick = () => {
             <Points class="driver-card__points" :points="points" />
         </div>
     </div>
+    <div class="divider"></div>
 </template>
 
 <style scoped>
@@ -53,17 +54,14 @@ const onClick = () => {
     flex: 1 1 100%;
     flex-wrap: wrap;
     gap: .25em;
+    transition: opacity 0.2s ease-out;
 }
 
-.driver-card__container::after {
+.divider {
     content: "";
     flex: 0 0 100%;
     width: 100%;
     border-bottom: 1px solid var(--card-color);
-}
-
-.driver-card__container:last-child::after {
-    border-bottom: none;
 }
 
 .driver-card {

@@ -22,7 +22,7 @@ const { driversStats } = storeToRefs(useDriverStore());
     </div>
 </template>
 
-<style scoped>
+<style>
 .driver-cards__container {
     display: flex;
     flex-direction: column;
@@ -30,8 +30,11 @@ const { driversStats } = storeToRefs(useDriverStore());
 }
 
 @media screen and (min-width: 768px) {
-    .driver-cards__container:hover > .driver-card:not(:hover) {
-        opacity: .4;
+    .driver-cards__container:hover > .driver-card__container:not(:hover) {
+        opacity: .6;
+    }
+    .driver-cards__container:hover > .divider {
+        opacity: .6;
     }
 }
 
