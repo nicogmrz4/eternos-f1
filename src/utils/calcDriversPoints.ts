@@ -88,6 +88,10 @@ export function calcDriversStats(tracks: TrackInterface[], drivers: DriverInterf
     }
   })
 
+  if (driversStatsPerRace.length == 0) {
+    driversStatsPerRace[0] = drivers.map((driver) => new DriverStatsDTO(driver));
+  }
+
   return driversStatsPerRace;
 }
 
