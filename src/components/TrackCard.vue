@@ -36,12 +36,15 @@ const showResult = ref(false);
                     <div class="table__container">
                         <table>
                             <tbody>
-                                <tr v-for="r in results" :key="r.driver.id" :class="[r.dnf ? 'dnf' : '']">
+                                <tr v-for="r in results" :key="r.driver.id" :class="[r.dnf || r.dsq ? 'dnf' : '']">
                                     <td class="pos__col">{{ r.position }}</td>
                                     <td class="name__col">{{ r.driver.name }}</td>
                                     <td class="diff__col">
                                         <template v-if="r.dnf">
                                             <span class="dnf">DNF ({{ r.startingPosition }})</span>
+                                        </template>
+                                        <template v-else-if="r.dsq">
+                                            <span class="dsq">DSQ ({{ r.startingPosition }})</span>
                                         </template>
                                         <template v-else>
                                             <PositionChangeMini :position="r.position"
@@ -186,7 +189,7 @@ table .icons__col {
     width: 120px;
 }
 
-.dnf {
+.dnf, .dnf {
     opacity: .6;
 }
 

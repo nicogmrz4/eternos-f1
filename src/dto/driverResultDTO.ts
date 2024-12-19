@@ -6,6 +6,7 @@ export class DriverResultDTO implements DriverResultInterface {
   public startingPosition: number = 0;
   public fastLap: boolean = false;
   public dnf: boolean = false;
+  public dsq: boolean = false;
   public cleanRace: boolean = true;
 
   constructor(
