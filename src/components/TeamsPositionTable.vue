@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, type Ref } from 'vue';
+import { computed, onMounted, ref, watch, type Ref } from 'vue';
 import TeamCard from '@/components/TeamCard.vue';
 import type { TeamStats } from '@/dto/teamStats';
 import { calcTeamPoints } from '@/utils/calcTeamPoints';
@@ -9,14 +9,14 @@ import { useDriverStore } from '@/stores/driverStore';
 
 const teamsStats: Ref<TeamStats[]> = ref([]);
 const { driversStatsHistory } = storeToRefs(useDriverStore());
-const { teams } = storeToRefs(useGlobalStore());
+const globalStore = useGlobalStore();
 
-watch(teams, () => {
-  teamsStats.value = calcTeamPoints(driversStatsHistory.value, teams.value);
+watch(() => globalStore.teams, () => {
+  teamsStats.value = calcTeamPoints(driversStatsHistory.value, globalStore.teams);
 });
 
 onMounted(async () => {
-  teamsStats.value = calcTeamPoints(driversStatsHistory.value, teams.value);
+  teamsStats.value = calcTeamPoints(driversStatsHistory.value, globalStore.teams);
 });
 </script>
 
@@ -37,5 +37,25 @@ onMounted(async () => {
   .team-cards__container:hover > .team-card:not(:hover) {
     opacity: .4;
   }
+}
+
+.change-enter-active,
+.change-leave-active {
+  transition: all 0.5s ease;
+}
+
+.change-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.change-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.change-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

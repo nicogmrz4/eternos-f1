@@ -3,13 +3,15 @@ import TrackCard from '@/components/TrackCard.vue'
 import { useGlobalStore } from '@/stores/globalStore';
 import { storeToRefs } from 'pinia';
 
-const { tracks } = storeToRefs(useGlobalStore());
+const { tracks, currentSeason } = storeToRefs(useGlobalStore());
 </script>
 
 <template>
-    <div class="tracks-list__container">
-        <TrackCard v-for="track, i in tracks" :key="track.name" v-bind="track" :order="i + 1" />
-    </div>
+    <Transition name="change" mode="out-in">
+        <div class="tracks-list__container" :key="currentSeason">
+            <TrackCard v-for="track, i in tracks" :key="track.name" v-bind="track" :order="i + 1" />
+        </div>
+    </Transition>
 </template>
 
 <style scoped>
@@ -22,5 +24,24 @@ const { tracks } = storeToRefs(useGlobalStore());
     .tracks-list__container:hover > .track-card:not(:hover) {
         opacity: .4;
     }
+}
+.change-enter-active,
+.change-leave-active {
+  transition: all 0.5s ease;
+}
+
+.change-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.change-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.change-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>
