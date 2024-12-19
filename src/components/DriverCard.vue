@@ -6,6 +6,7 @@ import PositionAndDiff from './molecules/PositionAndDiff.vue'
 import { type DriverInterface } from '@/interfaces/driver';
 import { useDriverStore } from '@/stores/driverStore';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
+import Position from './atoms/Position.vue';
 
 interface Props {
     driver: DriverInterface
@@ -31,50 +32,47 @@ const onClick = () => {
 </script>
 
 <template>
-    <div class="driver-card" @click="onClick">
-        <PositionAndDiff :diff="lastPosition ? lastPosition - position! : 0" :position="position"/>
-        <img class="driver-card__avatar" :src="driver?.team.avatar">
-        <div class="driver-card__info">
-            <span class="name">{{ driver?.name }}</span>
-            <span class="team card-text-muted">{{ driver?.team.name }}</span>
-        </div>
-        <Points class="driver-card__points" :points="points" />
-        <Transition>
-            <div v-if="showStats" class="driver-card__stats">
-                <div class="stat card-text-muted">
-                    <span class="stat__value">{{ races }}</span>
-                    <span class="stat__label">Carreras</span>
-                </div>                
-                <div class="stat card-text-muted">
-                    <span class="stat__value">{{ wins }}</span>
-                    <span class="stat__label">Victorias</span>
-                </div>
-                <div class="stat card-text-muted">
-                    <span class="stat__value">{{ fastLaps }}</span>
-                    <span class="stat__label">Vueltas r.</span>
-                </div>
-                <div class="stat card-text-muted">
-                    <span class="stat__value">{{ poles }}</span>
-                    <span class="stat__label">Poles</span>
-                </div>
-                <div class="stat card-text-muted">
-                    <span class="stat__value">{{ podiums }}</span>
-                    <span class="stat__label">Podios</span>
-                </div>
+    <div class="driver-card__container">
+        <Position :position="position" />
+        <PositionChange :diff="lastPosition ? lastPosition - position! : 0" />
+        <div class="driver-card" @click="onClick">
+            <img class="driver-card__avatar" :src="driver?.team.avatar || '/f1-teams/shield-cross.svg'">
+            <div class="driver-card__info">
+                <span class="name">{{ driver?.name }}</span>
+                <span class="team card-text-muted">{{ driver?.team.name }}</span>
             </div>
-        </Transition>
+            <Points class="driver-card__points" :points="points" />
+        </div>
     </div>
+    <div class="divider"></div>
 </template>
 
 <style scoped>
+.driver-card__container {
+    display: flex;
+    align-items: center; 
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    gap: .25em;
+    transition: opacity 0.2s ease-out;
+}
+
+.divider {
+    content: "";
+    flex: 0 0 100%;
+    width: 100%;
+    border-bottom: 1px solid var(--card-color);
+}
+
 .driver-card {
+    flex: auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--card-padding);
-    background-color: var(--card-color);
+    /* background-color: var(--card-color); */
     border-radius: var(--card-border-radius);
-    padding: var(--card-padding);
+    padding: 4px 8px;
     overflow: hidden;
     position: relative;
     transition: opacity 0.2s ease-out, transform 0.2s ease-out;
@@ -108,68 +106,8 @@ const onClick = () => {
     font-weight: 100;
 }
 
-.driver-card__stats {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    overflow: hidden;
-    transition: height 0.2s ease-out;
-}
-
-.driver-card__stats > .stat {
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
-    align-items: center;
-}
-
-.driver-card__stats > .stat > .stat__value {
-    font-weight: 700;
-    font-size: 22px;
-    height: 20px;
-    color: white;
-}
-
-.driver-card__stats > .stat > .stat__label {
-    font-weight: 100;
-    font-size: 12px;
-}
-
-
 .driver-card__points {
     margin-left: auto;
-}
-
-/* .driver-card:hover {
-    transform: scale(1.05);
-} */
-
-.v-enter-from {
-    max-height: 0;
-    opacity: 0;
-}
-
-.v-enter-active {
-    transition: max-height 200ms linear, opacity 0.2s ease-out 150ms;
-}
-
-.v-enter-to {
-    max-height: 90px;
-    opacity: 1;
-}
-
-.v-leave-from {
-    max-height: 90px;
-    opacity: 1;
-}
-
-.v-leave-active {
-    transition: max-height 200ms linear, opacity 0.2s ease-in;
-}
-
-.v-leave-to {
-    max-height: 0;
-    opacity: 0;
 }
 
 </style>

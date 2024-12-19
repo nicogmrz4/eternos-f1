@@ -1,17 +1,18 @@
-import tracks from "@/static/tracks";
-import { drivers } from "@/static/drivers";
 import { DriverStatsDTO } from "@/dto/driverStatsDTO";
 import type { DriverStatsInterface } from "@/interfaces/driverStats";
 import type { Driver } from "@/dto/driverDTO";
 import type { DriverInterface } from "@/interfaces/driver";
 import { driverPositionAvg, driverStartPositionAvg, calcResultPoints, calcResultStats } from "@/utils";
+import type { TrackInterface } from "@/interfaces/track";
 
-export function calcDriverStats(driver: DriverInterface): DriverStatsInterface {
+// Tracks're important because it has the results
+
+export function calcDriverStats(driver: DriverInterface, tracks: TrackInterface[]): DriverStatsInterface {
   const stats: DriverStatsDTO = new DriverStatsDTO(driver);
   const racedTracks = tracks.filter((track) => track.isRaced == true);
 
   racedTracks.forEach((track, i) => {
-    const result = track.result?.find((result) => result.driver.id == driver.id);
+    const result = track.results?.find((result) => result.driver.id == driver.id);
     if (!result) return;
     stats.points += calcResultPoints(result);
     stats.addStats(calcResultStats(result));
@@ -26,13 +27,13 @@ export function calcDriverStats(driver: DriverInterface): DriverStatsInterface {
   return stats;
 }
 
-export function calcDriverPenultimateStats(driver: Driver): DriverStatsInterface {
+export function calcDriverPenultimateStats(driver: Driver, tracks: TrackInterface[]): DriverStatsInterface {
   const stats: DriverStatsDTO = new DriverStatsDTO(driver);
   const racedTracks = tracks.filter((track) => track.isRaced == true);
 
   racedTracks.splice(racedTracks.length - 1, 1);
   racedTracks.forEach((track) => {
-    const result = track.result?.find((result) => result.driver.id == driver.id);
+    const result = track.results?.find((result) => result.driver.id == driver.id);
     if (!result) return;
     stats.points += calcResultPoints(result);
     stats.addStats(calcResultStats(result));
@@ -47,7 +48,7 @@ export function calcDriverPenultimateStats(driver: Driver): DriverStatsInterface
   return stats;
 }
 
-export function calcDriversStats(): DriverStatsInterface[][] {
+export function calcDriversStats(tracks: TrackInterface[], drivers: DriverInterface[]): DriverStatsInterface[][] {
   let driverStats: DriverStatsDTO[] = [];
   let driversStatsPerRace: DriverStatsDTO[][] = [];
   const racedTracks = tracks.filter((track) => track.isRaced);
@@ -56,7 +57,7 @@ export function calcDriversStats(): DriverStatsInterface[][] {
     driversStatsPerRace[trackIndex] = [];
     drivers.forEach((driver) => {
       const stats: DriverStatsDTO = new DriverStatsDTO(driver);
-      const result = track.result?.find((result) => result.driver.id == driver.id);
+      const result = track.results?.find((result) => result.driver.id == driver.id);
 
       if (result) {
         stats.addStats(calcResultStats(result));
@@ -86,16 +87,18 @@ export function calcDriversStats(): DriverStatsInterface[][] {
       });
     }
   })
-  
-  console.log(driversStatsPerRace);
+
+  if (driversStatsPerRace.length == 0) {
+    driversStatsPerRace[0] = drivers.map((driver) => new DriverStatsDTO(driver));
+  }
 
   return driversStatsPerRace;
 }
 
-export function calcDriversPenultimateStats(): DriverStatsInterface[] {
+export function calcDriversPenultimateStats(tracks: TrackInterface[], drivers: DriverInterface[]): DriverStatsInterface[] {
   let driverStats: DriverStatsDTO[] = [];
   drivers.forEach((driver) => {
-    const stats: DriverStatsDTO = calcDriverPenultimateStats(driver);
+    const stats: DriverStatsDTO = calcDriverPenultimateStats(driver, tracks);
     driverStats.push(stats);
   });
   driverStats = sortStats(driverStats);

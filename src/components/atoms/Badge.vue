@@ -21,10 +21,14 @@ const props = defineProps<Props>();
 }
 
 .badge--success {
-  background-color: var(--success-color);
+  border: 1px solid var(--success-color);
+  color: var(--success-color);
+  /* background-color: var(--success-color); */
 }
 
 .badge--pending {
-  background-color: var(--pending-color);
+  border: 1px solid var(--pending-color);
+  color: var(--pending-color);
+  /* background-color: var(--pending-color); */
 }
 </style>

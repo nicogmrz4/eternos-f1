@@ -7,6 +7,6 @@ export class TrackDTO implements TrackInterface{
     public circuit: string,
     public flag: string,
     public isRaced: boolean,
-    public result: DriverResultDTO[]
+    public results: DriverResultDTO[]
   ){}
 }

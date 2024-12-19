@@ -1,17 +1,28 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
-import teams from '@/static/teamsTable';
+import { computed, onMounted, ref, watch, type Ref } from 'vue';
 import TeamCard from '@/components/TeamCard.vue';
+import type { TeamStats } from '@/dto/teamStats';
 import { calcTeamPoints } from '@/utils/calcTeamPoints';
-import type { TeamInterface } from '@/interfaces/team';
+import { useGlobalStore } from '@/stores/globalStore';
+import { storeToRefs } from 'pinia';
+import { useDriverStore } from '@/stores/driverStore';
 
-const data: Ref<TeamInterface[]> = ref(calcTeamPoints());
+const teamsStats: Ref<TeamStats[]> = ref([]);
+const { driversStatsHistory } = storeToRefs(useDriverStore());
+const globalStore = useGlobalStore();
 
+watch(() => globalStore.teams, () => {
+  teamsStats.value = calcTeamPoints(driversStatsHistory.value, globalStore.teams);
+});
+
+onMounted(async () => {
+  teamsStats.value = calcTeamPoints(driversStatsHistory.value, globalStore.teams);
+});
 </script>
 
 <template>
   <div class="team-cards__container">
-    <TeamCard v-for="team, i in teams" :key="team.name" v-bind="team" :position="i + 1" />
+    <TeamCard v-for="teamStats, i in teamsStats" :key="i" v-bind="teamStats" :position="i + 1" />
   </div>
 </template>
 
@@ -26,5 +37,25 @@ const data: Ref<TeamInterface[]> = ref(calcTeamPoints());
   .team-cards__container:hover > .team-card:not(:hover) {
     opacity: .4;
   }
+}
+
+.change-enter-active,
+.change-leave-active {
+  transition: all 0.5s ease;
+}
+
+.change-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.change-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.change-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

@@ -5,5 +5,5 @@ export interface TrackInterface {
   circuit: string,
   flag: string
   isRaced: boolean
-  result: DriverResultInterface[]
+  results: DriverResultInterface[]
 }
