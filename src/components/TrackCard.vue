@@ -55,7 +55,7 @@ const showResult = ref(false);
                                         <template v-if="!r.dnf">
                                             <v-icon v-if="r.cleanRace" name="md-healthandsafety-outlined" scale="1.2"
                                                 class="clean-race"></v-icon>
-                                            <v-icon v-if="r.startingPosition == 1" name="md-workspacepremium"
+                                            <v-icon v-if="r.pole" name="md-workspacepremium"
                                                 scale="1.2" class="pole"></v-icon>
                                             <v-icon v-if="r.fastLap" name="oi-stopwatch" scale="1.3"></v-icon>
                                         </template>

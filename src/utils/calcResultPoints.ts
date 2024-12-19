@@ -16,7 +16,7 @@ export function calcResultPoints(driverResult: DriverResultInterface): number {
     points += getPointsByPosition(driverResult.position);
   if (driverResult.fastLap && driverResult.position <= MAX_POINTABLE_POSITIONS)
     points++;
-  if (driverResult.startingPosition == positions.FIRST) points += POLE_POINTS;
+  if (driverResult.pole) points += POLE_POINTS;
   if (driverResult.startingPosition - driverResult.position > 0) {
     points += Math.min(
       MAX_POINTS_PER_GAINED_POSITION,

@@ -6,6 +6,7 @@ export interface DriverResultInterface {
   fastLap: boolean,
   dnf: boolean,
   dsq: boolean,
+  pole: boolean,
   cleanRace: boolean,
   driver: DriverInterface
 }
