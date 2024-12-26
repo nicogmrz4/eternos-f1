@@ -16,6 +16,10 @@ const seasons = ref([
   {
     value: 'preseason-9',
     label: 'Temporada 9 Pretemporada'
+  },
+  {
+    value: 'season-9-b',
+    label: 'Temporada 9 - Liga B'    
   }
 ]);
 const selectedSeason = ref('preseason-9');
