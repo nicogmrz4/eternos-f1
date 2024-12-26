@@ -18,6 +18,7 @@ export function calcTeamPoints(driversStats: DriverStatsInterface[][], teams: Te
   });
   
   teamPenultimateStats.map((teamStats) => {
+    if (driversStats.length < 2) return;
     teamStats.points = driversStats[driversStats.length - 2]
       .filter((driverStats) => driverStats.driver.team.name == teamStats.team.name)
       .reduce((a, b) => a + b.points, 0);
