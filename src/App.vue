@@ -18,11 +18,15 @@ const seasons = ref([
     label: 'Temporada 9 Pretemporada'
   },
   {
+    value: 'season-9-a',
+    label: 'Temporada 9 - Liga A'    
+  },
+  {
     value: 'season-9-b',
     label: 'Temporada 9 - Liga B'    
   }
 ]);
-const selectedSeason = ref('preseason-9');
+const selectedSeason = ref('season-9-a');
 
 async function loadData() {
   const { tracks, drivers, teams } = await globalStore.fetchTracks();

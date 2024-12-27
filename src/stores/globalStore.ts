@@ -8,7 +8,7 @@ export const useGlobalStore = defineStore("globalStore", {
     showPositions: false,
     tracks: [] as TrackInterface[],
     teams: [] as TeamInterface[],
-    currentSeason: "preseason-9",
+    currentSeason: "season-9-a",
     lastUpdate: "15122024", // ddmmyyyy
   }),
   actions: {
