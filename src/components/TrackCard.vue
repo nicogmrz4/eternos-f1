@@ -75,7 +75,7 @@ onMounted(() => {
                             </tbody>
                         </table>
                         <div v-if="cautionsCount > 0">
-                            <h4>Amonestaciones</h4>
+                            <h4 class="caution-title">Amonestaciones</h4>
                             <table class="cautions-table">
                                 <thead>
                                     <th>Piloto</th>
@@ -108,6 +108,10 @@ onMounted(() => {
     gap: 1em;
 }
 
+.caution-title {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
 .cautions-table {
     font-size: 18px;
 }
