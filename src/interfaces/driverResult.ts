@@ -1,3 +1,4 @@
+import type { Caution } from "./caution";
 import type { DriverInterface } from "./driver";
 
 export interface DriverResultInterface {
@@ -9,4 +10,5 @@ export interface DriverResultInterface {
   pole: boolean,
   cleanRace: boolean,
   driver: DriverInterface
+  cautions: Caution[]
 }

@@ -2,7 +2,8 @@
 import Badge from '@/components/atoms/Badge.vue';
 import type { DriverResultInterface } from '@/interfaces/driverResult';
 import PositionChangeMini from '@/components/atoms/PositionChangeMini.vue';
-import { ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
+import type { Caution } from '@/interfaces/caution';
 
 interface Props {
     order: number,
@@ -15,6 +16,16 @@ interface Props {
 
 const props = defineProps<Props>();
 const showResult = ref(false);
+const cautionsCount: Ref<number> = ref(0);
+
+onMounted(() => {
+    cautionsCount.value = props.results.reduce((acc, result) => {
+        if (result.cautions) {
+            acc += result.cautions.length;
+        }
+        return acc;
+    }, 0);
+})
 </script>
 
 <template>
@@ -63,6 +74,25 @@ const showResult = ref(false);
                                 </tr>
                             </tbody>
                         </table>
+                        <div v-if="cautionsCount > 0">
+                            <h4>Amonestaciones</h4>
+                            <table class="cautions-table">
+                                <thead>
+                                    <th>Piloto</th>
+                                    <th class="caution-reason__reason-col">Motivo</th>
+                                    <th>Puntos</th>
+                                </thead>
+                                <tbody>
+                                    <template v-for="r in results">
+                                        <tr v-for="c in r.cautions" :key="r.driver.id">
+                                            <td>{{ r.driver.name }}</td>
+                                            <td class="caution-reason__reason-col">{{ c.reason }}</td>
+                                            <td class="caution-reason__points-col">{{ c.points }}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </Transition>
@@ -74,6 +104,25 @@ const showResult = ref(false);
 .table__container {
     display: flex;
     padding: 0 8px;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.cautions-table {
+    font-size: 18px;
+}
+
+.cautions-table thead {
+    height: 30px;
+    font-weight: bold;
+}
+
+.caution-reason__reason-col {
+    padding: 0 1em;
+}
+
+.caution-reason__points-col {
+    text-align  : center;
 }
 
 table {
@@ -81,6 +130,7 @@ table {
     font-size: 18px;
     padding: 0 1em;
     border-collapse: collapse;
+    text-align: left;
 }
 
 table .name__col {}

@@ -17,6 +17,7 @@ export class DriverStatsDTO implements DriverStatsInterface
     public pointsAvg: number = 0,
     public startPositionAvg: number = 0,
     public positionAvg: number = 0,
+    public penaltyPoints: number = 0,
     public results: DriverResultInterface[] = [],
     public lastPosition: number | null = null
   ) {}
@@ -29,6 +30,7 @@ export class DriverStatsDTO implements DriverStatsInterface
     this.fastLaps += stats.fastLaps;
     this.points += stats.points;
     this.cleanRaces += stats.cleanRaces;
+    this.penaltyPoints += stats.penaltyPoints;
   }
 
   subtractStats(stats: DriverStatsInterface): void {
@@ -39,5 +41,6 @@ export class DriverStatsDTO implements DriverStatsInterface
     this.fastLaps -= stats.fastLaps;
     this.points -= stats.points;
     this.cleanRaces -= stats.cleanRaces;
+    this.penaltyPoints -= stats.penaltyPoints;
   }
 } 

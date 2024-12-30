@@ -18,6 +18,7 @@ interface Props {
     podiums: number
     races: number
     wins: number
+    penaltyPoints: number
     driverStats: DriverStatsInterface
 }
 
@@ -41,6 +42,7 @@ const onClick = () => {
                 <span class="name">{{ driver?.name }}</span>
                 <span class="team card-text-muted">{{ driver?.team.name }}</span>
             </div>
+            <p class="penalty_points">{{ penaltyPoints }}!</p>
             <Points class="driver-card__points" :points="points" />
         </div>
     </div>
@@ -48,6 +50,14 @@ const onClick = () => {
 </template>
 
 <style scoped>
+.penalty_points {
+    font-size: 22px;
+    font-weight: 700;
+    margin-left: 12px;
+    color: #e6d600;
+    animation: pulse 2s infinite ease-in-out;
+}
+
 .driver-card__container {
     display: flex;
     align-items: center; 
@@ -110,4 +120,17 @@ const onClick = () => {
     margin-left: auto;
 }
 
+@keyframes pulse {
+    0% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .5;
+    }
+}
 </style>
