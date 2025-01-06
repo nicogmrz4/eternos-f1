@@ -9,7 +9,7 @@ export const useGlobalStore = defineStore("globalStore", {
     tracks: [] as TrackInterface[],
     teams: [] as TeamInterface[],
     currentSeason: "season-9-a",
-    lastUpdate: "15122024", // ddmmyyyy
+    lastUpdate: "060120250030", // ddmmyyyyhhmm
   }),
   actions: {
     toggleShowPositions() {
