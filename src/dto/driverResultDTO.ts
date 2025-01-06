@@ -1,3 +1,4 @@
+import type { Caution } from "@/interfaces/caution";
 import type { DriverInterface } from "@/interfaces/driver";
 import type { DriverResultInterface } from "@/interfaces/driverResult";
 
@@ -9,6 +10,7 @@ export class DriverResultDTO implements DriverResultInterface {
   public dsq: boolean = false;
   public pole: boolean = false;
   public cleanRace: boolean = true;
+  public cautions: Caution[] = [];
 
   constructor(
     public driver: DriverInterface,

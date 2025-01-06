@@ -42,7 +42,7 @@ const onClick = () => {
                 <span class="name">{{ driver?.name }}</span>
                 <span class="team card-text-muted">{{ driver?.team.name }}</span>
             </div>
-            <p class="penalty_points">{{ penaltyPoints }}!</p>
+            <!-- <p class="penalty_points">{{ penaltyPoints }}!</p> -->
             <Points class="driver-card__points" :points="points" />
         </div>
     </div>
