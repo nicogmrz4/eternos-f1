@@ -11,7 +11,7 @@ import {
 export function calcResultPoints(driverResult: DriverResultInterface): number {
   let points = 0;
 
-  if (driverResult.dnf) return points;
+  if (driverResult.dnf || driverResult.dsq) return points;
   if (driverResult.position <= MAX_POINTABLE_POSITIONS)
     points += getPointsByPosition(driverResult.position);
   if (driverResult.fastLap && driverResult.position <= MAX_POINTABLE_POSITIONS)
