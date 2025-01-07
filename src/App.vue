@@ -11,26 +11,49 @@ const driverStore = useDriverStore();
 const seasons = ref([
   {
     value: 'season-8',
-    label: 'Temporada 8'
+    label: 'Temporada 8',
+    options: {
+      pointsPositionsGained: true,
+      polePoints: true,
+    }
   },
   {
     value: 'preseason-9',
-    label: 'Temporada 9 Pretemporada'
+    label: 'Temporada 9 Pretemporada',
+    options: {
+      pointsPositionsGained: true,
+      polePoints: true,
+    }
   },
   {
     value: 'season-9-a',
-    label: 'Temporada 9 - Liga A'    
+    label: 'Temporada 9 - Liga A',
+    options: {
+      pointsPositionsGained: false,
+      polePoints: false,
+    }
   },
   {
     value: 'season-9-b',
-    label: 'Temporada 9 - Liga B'    
+    label: 'Temporada 9 - Liga B',
+    options: {
+      pointsPositionsGained: true,
+      polePoints: true,
+    }
   }
 ]);
-const selectedSeason = ref('season-9-a');
+const selectedSeason = ref({
+  value: 'season-9-a',
+  label: 'Temporada 9 - Liga A',
+  options: {
+    pointsPositionsGained: false,
+    polePoints: false,
+  }
+});
 
 async function loadData() {
   const { tracks, drivers, teams } = await globalStore.fetchTracks();
-  const driversStatsHistory = calcDriversStats(tracks, drivers);
+  const driversStatsHistory = calcDriversStats(tracks, drivers, selectedSeason.value.options);
   driverStore.driversStatsHistory = driversStatsHistory;
   driverStore.driversStats = driversStatsHistory[driversStatsHistory.length - 1];
   globalStore.teams = teams;
@@ -38,7 +61,7 @@ async function loadData() {
 }
 
 watch(selectedSeason, async (val) => {
-  globalStore.currentSeason = val;
+  globalStore.currentSeason = val.value;
   await loadData();
 });
 
@@ -51,8 +74,9 @@ onMounted(async () => {
   <Navbar />
   <div class="app-container">
     <main>
+      {{ selectedSeason }}
       <select class="season__select" v-model="selectedSeason"> 
-        <option class="season__select__option" v-for="season in seasons" :value="season.value">{{ season.label }}</option>
+        <option class="season__select__option" v-for="season in seasons" :value="season">{{ season.label }}</option>
       </select>
       <RouterView v-slot="{ Component }">
         <Transition name="router">
