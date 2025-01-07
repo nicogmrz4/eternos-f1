@@ -74,7 +74,6 @@ onMounted(async () => {
   <Navbar />
   <div class="app-container">
     <main>
-      {{ selectedSeason }}
       <select class="season__select" v-model="selectedSeason"> 
         <option class="season__select__option" v-for="season in seasons" :value="season">{{ season.label }}</option>
       </select>
