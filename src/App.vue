@@ -58,6 +58,7 @@ async function loadData() {
   driverStore.driversStats = driversStatsHistory[driversStatsHistory.length - 1];
   globalStore.teams = teams;
   globalStore.tracks = tracks;
+  globalStore.drivers = drivers;
 }
 
 watch(selectedSeason, async (val) => {

@@ -1,3 +1,4 @@
+import type { DriverInterface } from "@/interfaces/driver";
 import type { TeamInterface } from "@/interfaces/team";
 import type { TrackInterface } from "@/interfaces/track";
 import { defineStore } from "pinia";
@@ -8,8 +9,9 @@ export const useGlobalStore = defineStore("globalStore", {
     showPositions: false,
     tracks: [] as TrackInterface[],
     teams: [] as TeamInterface[],
+    drivers: [] as DriverInterface[],
     currentSeason: "season-9-a",
-    lastUpdate: "060120250030", // ddmmyyyyhhmm
+    lastUpdate: "090120251351", // ddmmyyyyhhmm
   }),
   actions: {
     toggleShowPositions() {

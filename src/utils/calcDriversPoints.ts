@@ -15,7 +15,8 @@ export function calcDriverStats(driver: DriverInterface, tracks: TrackInterface[
     const result = track.results?.find((result) => result.driver.id == driver.id);
     if (!result) return;
     stats.points += calcResultPoints(result, options);
-    stats.addStats(calcResultStats(result));
+    const cautions = track.cautions.filter((caution) => caution.driver_id == driver.id);
+    stats.addStats(calcResultStats(result, cautions));
     stats.results.push(result);
   });
 
@@ -36,7 +37,8 @@ export function calcDriverPenultimateStats(driver: Driver, tracks: TrackInterfac
     const result = track.results?.find((result) => result.driver.id == driver.id);
     if (!result) return;
     stats.points += calcResultPoints(result, options);
-    stats.addStats(calcResultStats(result));
+    const cautions = track.cautions.filter((caution) => caution.driver_id == driver.id);
+    stats.addStats(calcResultStats(result, cautions));
     stats.results.push(result);
   });
 
@@ -60,7 +62,9 @@ export function calcDriversStats(tracks: TrackInterface[], drivers: DriverInterf
       const result = track.results?.find((result) => result.driver.id == driver.id);
 
       if (result) {
-        stats.addStats(calcResultStats(result));
+        const cautions = track.cautions.filter((caution) => caution.driver_id == driver.id);
+        console.log(cautions);
+        stats.addStats(calcResultStats(result, cautions));
         stats.points += calcResultPoints(result, options);
         stats.results.push(result);
       }

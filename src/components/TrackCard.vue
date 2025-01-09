@@ -4,6 +4,9 @@ import type { DriverResultInterface } from '@/interfaces/driverResult';
 import PositionChangeMini from '@/components/atoms/PositionChangeMini.vue';
 import { onMounted, ref, type Ref } from 'vue';
 import type { Caution } from '@/interfaces/caution';
+import { useDriverStore } from '@/stores/driverStore';
+import { useGlobalStore } from '@/stores/globalStore';
+import { storeToRefs } from 'pinia';
 
 interface Props {
     order: number,
@@ -11,12 +14,18 @@ interface Props {
     circuit: string,
     flag: string,
     isRaced: boolean,
-    results: DriverResultInterface[]
+    results: DriverResultInterface[],
+    cautions: Caution[]
 }
 
 const props = defineProps<Props>();
 const showResult = ref(false);
 const cautionsCount: Ref<number> = ref(0);
+const { drivers } = storeToRefs(useGlobalStore());
+
+function findDriverById(id: number) {
+    return drivers.value.find(driver => driver.id === id);
+}
 
 onMounted(() => {
     cautionsCount.value = props.results.reduce((acc, result) => {
@@ -74,7 +83,7 @@ onMounted(() => {
                                 </tr>
                             </tbody>
                         </table>
-                        <div v-if="cautionsCount > 0">
+                        <div v-if="cautions.length > 0">
                             <h4 class="caution-title">Amonestaciones</h4>
                             <table class="cautions-table">
                                 <thead>
@@ -83,13 +92,11 @@ onMounted(() => {
                                     <th>Puntos</th>
                                 </thead>
                                 <tbody>
-                                    <template v-for="r in results">
-                                        <tr v-for="c in r.cautions" :key="r.driver.id">
-                                            <td>{{ r.driver.name }}</td>
-                                            <td class="caution-reason__reason-col">{{ c.reason }}</td>
-                                            <td class="caution-reason__points-col">{{ c.points }}</td>
-                                        </tr>
-                                    </template>
+                                    <tr v-for="(c, i) in cautions" :key="i">
+                                        <td>{{ findDriverById(c.driver_id)?.name || c.driver_id }}</td>
+                                        <td class="caution-reason__reason-col">{{ c.reason }}</td>
+                                        <td class="caution-reason__points-col">{{ c.points }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -114,6 +121,10 @@ onMounted(() => {
 }
 .cautions-table {
     font-size: 18px;
+}
+
+.cautions-table tr > *{
+    padding: .25em 0;
 }
 
 .cautions-table thead {

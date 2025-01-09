@@ -42,7 +42,7 @@ const onClick = () => {
                 <span class="name">{{ driver?.name }}</span>
                 <span class="team card-text-muted">{{ driver?.team.name }}</span>
             </div>
-            <!-- <p class="penalty_points">{{ penaltyPoints }}!</p> -->
+            <p class="penalty_points">{{ penaltyPoints }}!</p>
             <Points class="driver-card__points" :points="points" />
         </div>
     </div>
@@ -54,6 +54,7 @@ const onClick = () => {
     font-size: 22px;
     font-weight: 700;
     margin-left: 12px;
+    margin: 0;
     color: #e6d600;
     animation: pulse 2s infinite ease-in-out;
 }
