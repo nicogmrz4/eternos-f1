@@ -127,6 +127,10 @@ onMounted(() => {
     padding-bottom: 1em;
 }
 
+.cautions-table tr:last-child td {
+    padding-bottom: 0;
+}
+
 .cautions-table thead {
     height: 30px;
     font-weight: bold;
