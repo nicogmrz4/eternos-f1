@@ -123,8 +123,8 @@ onMounted(() => {
     font-size: 18px;
 }
 
-.cautions-table tr > *{
-    padding: .25em 0;
+.cautions-table tr td {
+    padding-bottom: 1em;
 }
 
 .cautions-table thead {
