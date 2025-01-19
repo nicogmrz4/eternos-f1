@@ -10,13 +10,13 @@ import {
 
 export function calcResultPoints(driverResult: DriverResultInterface, options: any = null): number {
   let points = 0;
-
+  
+  if (driverResult.pole && options.polePoints) points += POLE_POINTS;
   if (driverResult.dnf || driverResult.dsq) return points;
   if (driverResult.position <= MAX_POINTABLE_POSITIONS)
     points += getPointsByPosition(driverResult.position);
   if (driverResult.fastLap && driverResult.position <= MAX_POINTABLE_POSITIONS)
     points++;
-  if (driverResult.pole && options.polePoints) points += POLE_POINTS;
   if (driverResult.startingPosition - driverResult.position > 0 && options.pointsPositionsGained) {
     points += Math.min(
       MAX_POINTS_PER_GAINED_POSITION,
