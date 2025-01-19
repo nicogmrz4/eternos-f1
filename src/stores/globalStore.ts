@@ -11,7 +11,7 @@ export const useGlobalStore = defineStore("globalStore", {
     teams: [] as TeamInterface[],
     drivers: [] as DriverInterface[],
     currentSeason: "season-9-a",
-    lastUpdate: "190120251916", // ddmmyyyyhhmm
+    lastUpdate: "190120251925", // ddmmyyyyhhmm
   }),
   actions: {
     toggleShowPositions() {
