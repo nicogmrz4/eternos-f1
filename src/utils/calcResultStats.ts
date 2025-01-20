@@ -12,9 +12,9 @@ export function calcResultStats(result: DriverResultInterface, cautions: Caution
     stats.penaltyPoints += cautions.reduce((a, b) => a + b.points, 0);
   }
 
+  if (result.pole) stats.poles++;
   if (result.dnf || result.dsq) return stats;
   if (result.fastLap) stats.fastLaps++;
-  if (result.startingPosition == positions.FIRST) stats.poles++;
   if (result.position == positions.FIRST) stats.wins++;
   if (result.position <= positions.THIRD) stats.podiums++;
   if (result.cleanRace) stats.cleanRaces++;
