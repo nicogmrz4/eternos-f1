@@ -258,7 +258,7 @@ table .icons__col {
     width: 120px;
 }
 
-.dnf, .dnf {
+.dnf, .dsq {
     opacity: .6;
 }
 
