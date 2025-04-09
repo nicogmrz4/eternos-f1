@@ -8,13 +8,12 @@ import {
   positions
 } from "@/utils";
 
-export function calcResultPoints(driverResult: DriverResultInterface, options: any = null): number {
+export function calcResultPoints(driverResult: DriverResultInterface, isSprint: boolean = false, options: any = null): number {
   let points = 0;
   
   if (driverResult.pole && options.polePoints) points += POLE_POINTS;
   if (driverResult.dnf || driverResult.dsq) return points;
   if (driverResult.position <= MAX_POINTABLE_POSITIONS)
-    points += getPointsByPosition(driverResult.position);
   if (driverResult.fastLap && driverResult.position <= MAX_POINTABLE_POSITIONS)
     points++;
   if (driverResult.startingPosition - driverResult.position > 0 && options.pointsPositionsGained) {
@@ -25,9 +24,16 @@ export function calcResultPoints(driverResult: DriverResultInterface, options: a
   }
   if (driverResult.cleanRace) points += CLEAN_RACE_POINTS;
 
+  if (isSprint) {
+    points += getPointsByPosition(driverResult.position, options.sprintPoints);
+  } else {
+    points += getPointsByPosition(driverResult.position, options.racePoints);
+  }
+
   return points;
 }
 
-function getPointsByPosition(position: number): number {
+function getPointsByPosition(position: number, pointsPerPosition: number[] | null = null): number {
+  if (pointsPerPosition) return pointsPerPosition[position - 1];
   return POINTS_PER_POSITION[position - 1];
 }

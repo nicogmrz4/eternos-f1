@@ -14,7 +14,7 @@ export function calcDriverStats(driver: DriverInterface, tracks: TrackInterface[
   racedTracks.forEach((track, i) => {
     const result = track.results?.find((result) => result.driver.id == driver.id);
     if (!result) return;
-    stats.points += calcResultPoints(result, options);
+    stats.points += calcResultPoints(result, track.isSprint, options);
     const cautions = track.cautions.filter((caution) => caution.driver_id == driver.id);
     stats.addStats(calcResultStats(result, cautions));
     stats.results.push(result);
@@ -36,7 +36,7 @@ export function calcDriverPenultimateStats(driver: Driver, tracks: TrackInterfac
   racedTracks.forEach((track) => {
     const result = track.results?.find((result) => result.driver.id == driver.id);
     if (!result) return;
-    stats.points += calcResultPoints(result, options);
+    stats.points += calcResultPoints(result, track.isSprint, options);
     const cautions = track.cautions.filter((caution) => caution.driver_id == driver.id);
     stats.addStats(calcResultStats(result, cautions));
     stats.results.push(result);
@@ -65,7 +65,7 @@ export function calcDriversStats(tracks: TrackInterface[], drivers: DriverInterf
         const cautions = track.cautions.filter((caution) => caution.driver_id == driver.id);
         console.log(cautions);
         stats.addStats(calcResultStats(result, cautions));
-        stats.points += calcResultPoints(result, options);
+        stats.points += calcResultPoints(result, track.isSprint, options);
         stats.results.push(result);
       }
 

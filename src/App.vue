@@ -5,6 +5,7 @@ import { onMounted, ref, watch } from 'vue';
 import { useGlobalStore } from './stores/globalStore';
 import { calcDriversStats } from '@/utils/calcDriversPoints';
 import { useDriverStore } from './stores/driverStore';
+import { POINTS_PER_POSITION_SPRINT, POINTS_PER_POSITION_V2 } from './utils';
 
 const globalStore = useGlobalStore();
 const driverStore = useDriverStore();
@@ -55,6 +56,8 @@ const seasons = ref([
     options: {
       pointsPositionsGained: false,
       polePoints: true,
+      racePoints: POINTS_PER_POSITION_V2,
+      sprintPoints: POINTS_PER_POSITION_SPRINT
     }
   }
 ]);
@@ -64,6 +67,8 @@ const selectedSeason = ref({
   options: {
     pointsPositionsGained: false,
     polePoints: true,
+    racePoints: POINTS_PER_POSITION_V2,
+    sprintPoints: POINTS_PER_POSITION_SPRINT
   }
 });
 
