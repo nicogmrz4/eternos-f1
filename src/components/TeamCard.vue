@@ -1,16 +1,21 @@
 <template>
 	<div class="team-card__container">
-		<Position :position="position" />
-        <PositionChange :diff="lastPosition ? lastPosition - position! : 0" />
-		<div class="team-card">
-			<img class="team-card__avatar" :src="team?.avatar">
-			<span class="team-card__name">{{ team?.name }}</span>
-			<Points class="team-card__points" :points="points" />
+		<div class="team-card__info">
+			<Position :position="position" />
+			<PositionChange :diff="lastPosition ? lastPosition - position! : 0" />
+			<div class="team-card">
+				<img class="team-card__avatar" :src="team?.avatar">
+				<div ref="teamNameContainer" class="team-card__name">
+					<span ref="teamNameText" class="text" :style="{ 'animation-duration': `${animationDuration}s` }">{{ team?.name }}</span>
+				</div>
+				<Points class="team-card__points" :points="points" />
+			</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
 import Points from './atoms/Points.vue';
 import Position from './atoms/Position.vue';
 import PositionChange from './atoms/PositionChange.vue';
@@ -24,7 +29,22 @@ const props = defineProps({
 	team: TeamDTO,
 });
 
-console.log(props);
+const teamNameContainer = ref<HTMLElement>();
+const teamNameText = ref<HTMLElement>();
+const animationDuration = ref(0);
+
+onMounted(() => {
+  function setMarqueeDuration() {
+    const containerWidth = teamNameContainer.value?.offsetWidth!;
+    const textWidth = teamNameText.value?.offsetWidth!;
+
+    const speed = 100; 
+    const distance = containerWidth + textWidth;
+    animationDuration.value = distance / speed;
+  }
+
+  setMarqueeDuration();
+})
 </script>
 
 <style scoped>
@@ -45,6 +65,11 @@ console.log(props);
 
 .team-card__container:last-child::after {
 	border-bottom: none;
+}
+.team-card__info {
+	display: flex;
+	align-items: center;
+	width: 100%;
 }
 
 .team-card {
@@ -77,9 +102,38 @@ console.log(props);
 .team-card__name {
 	font-size: 18px;
 	font-weight: 500;
+	overflow: hidden;
+	/* text-overflow: ellipsis; */
+	white-space: nowrap;
+	width: 100%;
+	max-width: 210px;
+	position: relative;
+}
+
+.team-card__name > .text {
+	display: inline-block;
+	min-width: 210px;
+	animation: scroll-bounce 10s linear infinite alternate;
 }
 
 .team-card__points {
 	margin-left: auto;
+}
+@keyframes scroll-bounce {
+	0% {
+		transform: translateX(0%);
+	}
+
+	25% {
+		transform: translateX(0%);
+	}
+
+	75% {
+		transform: translateX(calc(210px - 100%));
+	}
+
+	100% {
+		transform: translateX(calc(210px - 100%));
+	}
 }
 </style>
