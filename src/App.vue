@@ -40,14 +40,30 @@ const seasons = ref([
       pointsPositionsGained: true,
       polePoints: true,
     }
+  },
+  {
+    value: 'preseason-10',
+    label: 'Temporada 10 Pretemporada',
+    options: {
+      pointsPositionsGained: false,
+      polePoints: true,
+    }    
+  },
+  {
+    value: 'season-10',
+    label: 'Temporada 10',
+    options: {
+      pointsPositionsGained: false,
+      polePoints: true,
+    }
   }
 ]);
 const selectedSeason = ref({
-  value: 'season-9-a',
-  label: 'Temporada 9 - Liga A',
+  value: 'season-10',
+  label: 'Temporada 10',
   options: {
     pointsPositionsGained: false,
-    polePoints: false,
+    polePoints: true,
   }
 });
 
