@@ -61,6 +61,7 @@ const seasons = ref([
     }
   }
 ]);
+
 const selectedSeason = ref({
   value: 'season-10',
   label: 'Temporada 10',
@@ -80,10 +81,12 @@ async function loadData() {
   globalStore.teams = teams;
   globalStore.tracks = tracks;
   globalStore.drivers = drivers;
+  globalStore.currentSeasonOptions = selectedSeason.value.options;
 }
 
 watch(selectedSeason, async (val) => {
   globalStore.currentSeason = val.value;
+  globalStore.currentSeasonOptions = val.options;
   await loadData();
 });
 

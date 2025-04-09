@@ -8,6 +8,7 @@ import type { Caution } from '@/interfaces/caution';
 import { useDriverStore } from '@/stores/driverStore';
 import { useGlobalStore } from '@/stores/globalStore';
 import { storeToRefs } from 'pinia';
+import { calcResultPoints } from '@/utils/calcResultPoints';
 
 interface Props {
     order: number,
@@ -24,7 +25,7 @@ interface Props {
 const props = defineProps<Props>();
 const showResult = ref(false);
 const cautionsCount: Ref<number> = ref(0);
-const { drivers } = storeToRefs(useGlobalStore());
+const { drivers, currentSeasonOptions } = storeToRefs(useGlobalStore());
 
 function findDriverById(id: number) {
     return drivers.value.find(driver => driver.id === id);
@@ -85,6 +86,7 @@ onMounted(() => {
                                             <v-icon v-if="r.fastLap" name="oi-stopwatch" scale="1.3"></v-icon>
                                         </template>
                                     </td>
+                                    <td class="points__col">+ {{ calcResultPoints(r, isSprint, currentSeasonOptions) }}</td>
                                 </tr>
                             </tbody>
                         </table>
