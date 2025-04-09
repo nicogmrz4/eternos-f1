@@ -24,7 +24,31 @@ const router = createRouter({
     {
       path: '/rules',
       name: 'rules',
-      component: () => import('@/views/RulesView.vue')
+      component: () => import('@/views/RulesView.vue'),
+    },
+    {
+      path: '/rules/room-config',
+      name: 'room-config',
+      component: () => import('@/views/rules/RoomSettings.vue')
+    },
+    {
+      path: '/rules/points',
+      name: 'points-rules',
+      component: () => import('@/views/rules/Points.vue')
+    },
+    {
+      path: '/rules/other-points',
+      name: 'other-points-rules',
+      component: () => import('@/views/rules/OtherPoints.vue')
+    },        {
+      path: '/rules/sprint',
+      name: 'sprint-rules',
+      component: () => import('@/views/rules/Sprint.vue')
+    },
+    {
+      path: '/rules/penalties',
+      name: 'penalties-rules',
+      component: () => import('@/views/rules/Penalties.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {
