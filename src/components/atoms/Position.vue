@@ -13,7 +13,7 @@ defineProps({
 <style scoped>
 .position {
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 600;
   width: 2ch;
   text-align: center;
 }

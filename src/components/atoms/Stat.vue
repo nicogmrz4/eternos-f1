@@ -28,11 +28,12 @@ defineProps<Props>();
 
   & .name {
     font-size: 14px;
+    font-weight: 300;
   }
 
   & .value {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
   }
 }
 </style>

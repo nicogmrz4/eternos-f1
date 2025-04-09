@@ -71,12 +71,13 @@ const modalTitle = computed(() => {
   display: flex;
   /* justify-content: space-around; */
   margin-bottom: 18px;
+  font-weight: 400;
 
   & .header__driver-name {
     width: 50%;
     text-align: center;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
   }
 }
 .btn {

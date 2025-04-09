@@ -14,7 +14,7 @@ const props = defineProps({
 <style scoped>
 .points > .value {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 600;
     margin-right: 4px;
 }
 

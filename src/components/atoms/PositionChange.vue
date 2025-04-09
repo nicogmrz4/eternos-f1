@@ -52,7 +52,7 @@ const diffClasses = computed(() => {
 
 .diff .value {
   font-size: 22px;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .diff .icon {

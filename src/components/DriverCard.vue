@@ -52,7 +52,7 @@ const onClick = () => {
 <style scoped>
 .penalty_points {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 600;
     margin-left: 12px;
     margin: 0;
     color: #e6d600;
@@ -114,7 +114,7 @@ const onClick = () => {
 
 .driver-card__info > .team {
     font-size: 12px;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .driver-card__points {

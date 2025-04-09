@@ -62,7 +62,7 @@ onMounted(() => {
                     <div class="table__container">
                         <table>
                             <tbody>
-                                <tr v-for="r in results" :key="r.driver.id" :class="[r.dnf || r.dsq ? 'dnf' : '']">
+                                <tr v-for="r in results" :key="r.driver.id" :class="[r.dnf || r.dsq ? 'dnf' : '']" style="height: 30px;">
                                     <td class="pos__col">{{ r.position }}</td>
                                     <td class="name__col">{{ r.driver.name }}</td>
                                     <td class="diff__col">
@@ -172,6 +172,10 @@ table .icons__col {
     text-align: left;
 }
 
+table .name_col, table .diff__col, table .icons__col, table .points__col {
+    padding: .1em 0;
+}
+
 .track-card__container {
     display: flex;
     align-items: center;
@@ -232,7 +236,7 @@ table .icons__col {
 
 .track-card__info>.circuit {
     font-size: 12px;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .track-card__flag {

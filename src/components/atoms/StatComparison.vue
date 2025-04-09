@@ -47,6 +47,9 @@ const targetValueComputed = computed(() => {
 </script>
 
 <style scoped>
+.name {
+  font-weight: 400;
+}
 .stat-comparison {
   width: 100%;
   display: flex;
@@ -58,6 +61,7 @@ const targetValueComputed = computed(() => {
   font-weight: bold;
   width: 50px;
   text-align: center;
+  font-weight: 400;
 }
 
 .smaller-value {

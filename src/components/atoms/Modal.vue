@@ -72,6 +72,7 @@ const backdropCloseModal = (e: MouseEvent) => {
 .modal__title {
   font-size: 20px;
   margin-top: 0;
+  font-weight: 600;
 }
 
 .modal__close {
