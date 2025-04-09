@@ -51,6 +51,7 @@ h3 {
 p {
     line-height: 1.8;
     margin-bottom: .5em;
+    color: #d7dbdd;
 }
 
 .card-text-muted {
@@ -60,5 +61,5 @@ p {
 }
 
 b, strong {
-    font-weight: 700;
+    font-weight: 600;
 }
