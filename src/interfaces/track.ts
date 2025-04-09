@@ -8,4 +8,6 @@ export interface TrackInterface {
   flag: string
   isRaced: boolean
   results: DriverResultInterface[]
+  isSprint?: boolean
+  isOfficial?: boolean
 }

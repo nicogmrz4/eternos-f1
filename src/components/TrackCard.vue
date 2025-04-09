@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Badge from '@/components/atoms/Badge.vue';
+import Dot from '@/components/atoms/Dot.vue';
 import type { DriverResultInterface } from '@/interfaces/driverResult';
 import PositionChangeMini from '@/components/atoms/PositionChangeMini.vue';
 import { onMounted, ref, type Ref } from 'vue';
@@ -16,6 +17,8 @@ interface Props {
     isRaced: boolean,
     results: DriverResultInterface[],
     cautions: Caution[]
+    isSprint?: boolean
+    isOfficial?: boolean
 }
 
 const props = defineProps<Props>();
@@ -48,9 +51,11 @@ onMounted(() => {
                 <div class="name">{{ name }}</div>
                 <div class="circuit card-text-muted">{{ circuit }}</div>
             </div>
-            <Badge class="track-card__status" :color="isRaced ? 'success' : 'pending'">
+            <Badge v-if="isOfficial" color="primary">OF</Badge>
+            <Badge v-if="isSprint" color="primary">SP</Badge>
+            <Dot class="track-card__status" :color="isRaced ? 'success' : 'pending'">
                 {{ isRaced ? 'Completada' : 'Pendiente' }}
-            </Badge>
+            </Dot>
             <Transition>
                 <div v-if="showResult && isRaced" class="track-card__result">
                     <div class="table__container">

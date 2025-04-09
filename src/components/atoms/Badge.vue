@@ -6,14 +6,14 @@
 
 <script setup lang="ts">
 interface Props {
-  color: 'success' | 'pending'
+  color: 'success' | 'pending' | 'primary'
 }
 const props = defineProps<Props>();
 </script>
 
 <style scoped>
 .badge {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   padding: 2px 6px;
   border-radius: 4px;
@@ -29,6 +29,12 @@ const props = defineProps<Props>();
 .badge--pending {
   border: 1px solid var(--pending-color);
   color: var(--pending-color);
+  /* background-color: var(--pending-color); */
+}
+
+.badge--primary {
+  background-color:   var(--card-color);
+  color: #fef;
   /* background-color: var(--pending-color); */
 }
 </style>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import TracksList from '@/components/TracksList.vue';
+import Badge from '@/components/atoms/Badge.vue';
+import Dot from '@/components/atoms/Dot.vue';
 
 </script>
 
@@ -21,19 +23,45 @@ import TracksList from '@/components/TracksList.vue';
                     <v-icon name="oi-stopwatch" class="fast-lap-icon" scale="1.5"></v-icon>
                     <span>Vuelta rápida</span>
                 </div>
+                <br>
             </div>
         </div>
+
+        <div class="badges__container">
+            <h4>Guía</h4>
+            <div class="badges__items">
+                <div class="badges__item">
+                    <Badge color="primary">OF</Badge>
+                    <span> (Oficial) Coincide con el calendario oficial de la F1</span>
+                </div>
+                <div class="badges__item">
+                    <Badge color="primary">SP</Badge>
+                    <span>Carrera sprint</span>
+                </div>
+                <div class="badges__item">
+                    <Dot color="pending"></Dot>
+                    <span>Pendiente</span>
+                </div>
+                <div class="badges__item">
+                    <Dot color="success"></Dot>
+                    <span>Completada</span>
+                </div>
+            </div>
+        </div>
+        
         <TracksList />
     </div>
 </template>
 
 <style scoped>
-.rule-icons__container > h4 {
+.rule-icons__container > h4,
+.badges__container > h4 {
     font-weight: bold;
     margin-bottom: 16px;
 }
 
-.rule-icons__container {
+.rule-icons__container,
+.badges__container {
     margin-bottom: 16px;
 }
 
@@ -47,5 +75,17 @@ import TracksList from '@/components/TracksList.vue';
     align-items: center;
     gap: 4px;
     margin-right: 16px;
+}
+
+.badges__item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.badges__items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 </style>
