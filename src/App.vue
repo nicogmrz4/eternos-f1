@@ -104,7 +104,9 @@ watch(selectedSeason, async (val) => {
 });
 
 watch(targetRacedTrackIndex, async (val, old) => {
-  await loadData();
+  const driversStatsHistory = calcDriversStats(globalStore.tracks, globalStore.drivers, selectedSeason.value.options, targetRacedTrackIndex.value);
+  driverStore.driversStatsHistory = driversStatsHistory;
+  driverStore.driversStats = driversStatsHistory[driversStatsHistory.length - 1];
 })
 
 onMounted(async () => {
