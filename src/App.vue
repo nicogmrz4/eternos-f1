@@ -6,6 +6,7 @@ import { useGlobalStore } from './stores/globalStore';
 import { calcDriversStats } from '@/utils/calcDriversPoints';
 import { useDriverStore } from './stores/driverStore';
 import { POINTS_PER_POSITION_SPRINT, POINTS_PER_POSITION_V2 } from './utils';
+import { type TrackInterface } from './interfaces/track';
 
 const globalStore = useGlobalStore();
 const driverStore = useDriverStore();
@@ -48,6 +49,8 @@ const seasons = ref([
     options: {
       pointsPositionsGained: false,
       polePoints: true,
+      racePoints: POINTS_PER_POSITION_V2,
+      sprintPoints: POINTS_PER_POSITION_SPRINT
     }    
   },
   {
@@ -73,22 +76,36 @@ const selectedSeason = ref({
   }
 });
 
+
+const racedTracks = ref<TrackInterface[]>([]);
+const targetRacedTrackIndex = ref(0);
+let firstTime = true;
 async function loadData() {
   const { tracks, drivers, teams } = await globalStore.fetchTracks();
-  const driversStatsHistory = calcDriversStats(tracks, drivers, selectedSeason.value.options);
+  const driversStatsHistory = calcDriversStats(tracks, drivers, selectedSeason.value.options, targetRacedTrackIndex.value);
   driverStore.driversStatsHistory = driversStatsHistory;
   driverStore.driversStats = driversStatsHistory[driversStatsHistory.length - 1];
   globalStore.teams = teams;
   globalStore.tracks = tracks;
   globalStore.drivers = drivers;
   globalStore.currentSeasonOptions = selectedSeason.value.options;
+  racedTracks.value = tracks.filter((track: TrackInterface) => track.isRaced);
+  if (firstTime) {
+    targetRacedTrackIndex.value = racedTracks.value.length - 1;
+    firstTime = false;
+  }
 }
 
 watch(selectedSeason, async (val) => {
   globalStore.currentSeason = val.value;
   globalStore.currentSeasonOptions = val.options;
   await loadData();
+  targetRacedTrackIndex.value = globalStore.tracks.filter((track: TrackInterface) => track.isRaced).length - 1;
 });
+
+watch(targetRacedTrackIndex, async (val, old) => {
+  await loadData();
+})
 
 onMounted(async () => {
   await loadData();
@@ -99,8 +116,18 @@ onMounted(async () => {
   <Navbar />
   <div class="app-container">
     <main>
-      <select class="season__select" v-model="selectedSeason"> 
-        <option class="season__select__option" v-for="season in seasons" :value="season">{{ season.label }}</option>
+      <label class="input-label label-season">Temporada</label>
+      <select class="input-select select-season" v-model="selectedSeason"> 
+        <option class="input-select__option" v-for="season in seasons" :value="season">{{ season.label }}</option>
+      </select>      
+      <label class="input-label">Carrera</label>
+      <select class="input-select" v-model="targetRacedTrackIndex"> 
+        <option class="input-select__option" v-for="(track, i) in racedTracks" :value="i">
+          {{ track.placement  + ' - '}}
+          {{ track.name }}
+          {{ track.isSprint ? ' - Sprint' : '' }}
+        </option>
+        <option value="-1" v-if="racedTracks.length === 0">No hay carreras</option>
       </select>
       <RouterView v-slot="{ Component }">
         <Transition name="router">
@@ -112,21 +139,33 @@ onMounted(async () => {
 </template>
 
 <style>
-.season__select {
+.label-season {
+  display: block;
+  margin-top: 1em;
+}
+.input-label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.select-season {
+  margin-bottom: 1em;
+}
+.input-select {
   width: 100%;
   background-color: transparent;
   color: white;
   padding: 0.25em;
   border: 1px solid var(--card-color);
   border-radius: 4px;
-  margin-top: 1em;
+  margin-top: .5em;
 }
 
-.season__select:focus {
+.input-select:focus {
   outline: none;
 }
 
-.season__select__option {
+.input-select__option {
   background-color: black;
 }
 

@@ -10,4 +10,5 @@ export interface TrackInterface {
   results: DriverResultInterface[]
   isSprint?: boolean
   isOfficial?: boolean
+  placement: number
 }

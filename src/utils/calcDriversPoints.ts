@@ -50,12 +50,13 @@ export function calcDriverPenultimateStats(driver: Driver, tracks: TrackInterfac
   return stats;
 }
 
-export function calcDriversStats(tracks: TrackInterface[], drivers: DriverInterface[], options: any): DriverStatsInterface[][] {
+export function calcDriversStats(tracks: TrackInterface[], drivers: DriverInterface[], options: any, trackIndexLimit: number): DriverStatsInterface[][] {
   let driverStats: DriverStatsDTO[] = [];
   let driversStatsPerRace: DriverStatsDTO[][] = [];
   const racedTracks = tracks.filter((track) => track.isRaced);
 
   racedTracks.forEach((track, trackIndex) => {
+    if (trackIndex > trackIndexLimit) return;
     driversStatsPerRace[trackIndex] = [];
     drivers.forEach((driver) => {
       const stats: DriverStatsDTO = new DriverStatsDTO(driver);
