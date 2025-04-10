@@ -10,7 +10,10 @@ import {
 
 export function calcResultPoints(driverResult: DriverResultInterface, isSprint: boolean = false, options: any = null): number {
   let points = 0;
-  
+  if (driverResult.driver.id === 15) {
+
+    console.log(driverResult)
+  }
   if (driverResult.pole && options.polePoints) points += POLE_POINTS;
   if (driverResult.dnf || driverResult.dsq) return points;
   if (driverResult.position <= MAX_POINTABLE_POSITIONS)
@@ -25,9 +28,9 @@ export function calcResultPoints(driverResult: DriverResultInterface, isSprint: 
   if (driverResult.cleanRace) points += CLEAN_RACE_POINTS;
 
   if (isSprint) {
-    points += getPointsByPosition(driverResult.position, options.sprintPoints);
+    points += getPointsByPosition(driverResult.position, options.sprintPoints) || 0;
   } else {
-    points += getPointsByPosition(driverResult.position, options.racePoints);
+    points += getPointsByPosition(driverResult.position, options.racePoints) || 0;
   }
 
   return points;
