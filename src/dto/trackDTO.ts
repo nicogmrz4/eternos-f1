@@ -9,6 +9,7 @@ export class TrackDTO implements TrackInterface{
     public flag: string,
     public isRaced: boolean,
     public results: DriverResultDTO[],
-    public cautions: Caution[]
+    public cautions: Caution[],
+    public placement: number
   ){}
 }
