@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import Points from './atoms/Points.vue'
 import PositionChange from './atoms/PositionChange.vue'
 import PositionAndDiff from './molecules/PositionAndDiff.vue'
@@ -7,6 +7,8 @@ import { type DriverInterface } from '@/interfaces/driver';
 import { useDriverStore } from '@/stores/driverStore';
 import type { DriverStatsInterface } from '@/interfaces/driverStats';
 import Position from './atoms/Position.vue';
+import { storeToRefs } from 'pinia';
+import { useGlobalStore } from '@/stores/globalStore';
 
 interface Props {
     driver: DriverInterface
@@ -26,10 +28,18 @@ const props = defineProps<Props>();
 
 const showStats = ref(false);
 const driverStore = useDriverStore();
+const { currentSeason } = storeToRefs(useGlobalStore());
 const onClick = () => {
     driverStore.setSourceDriver(props.driverStats);
     driverStore.showDriverStatsModal();
 }
+const driverAvatar = computed(() => {
+    if (props.driver.avatar) {
+        return '/drivers/' + currentSeason.value + '/' + props.driver.avatar;
+    }
+
+    return props.driver.team.avatar || '/f1-teams/shield-cross.svg';
+});
 </script>
 
 <template>
@@ -37,7 +47,10 @@ const onClick = () => {
         <Position :position="position" />
         <PositionChange :diff="lastPosition ? lastPosition - position! : 0" />
         <div class="driver-card" @click="onClick">
-            <img class="driver-card__avatar" :src="driver?.team.avatar || '/f1-teams/shield-cross.svg'">
+            <div v-if="driver?.avatar" class="avatar-wrapper">
+                <img class="driver-card__avatar" :src="driverAvatar">
+            </div>
+            <img v-else class="driver-card__avatar" :src="driverAvatar">
             <div class="driver-card__info">
                 <span class="name">{{ driver?.name }}</span>
                 <span class="team card-text-muted">{{ driver?.team.name }}</span>
@@ -92,10 +105,24 @@ const onClick = () => {
 
 .driver-card__avatar {
     width: 40px;
-    height: 40px;
+    /* height: 40px; */
     object-fit: contain;
-    margin-bottom: 0;
-    object-fit: contain;
+}
+
+.avatar-wrapper {
+    width: 40px;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+
+    & .driver-card__avatar {
+        width: 80px;
+        object-fit: cover;
+        position: relative;
+        left: calc(-50%);
+        top: -10px;
+        /* transform: scale(2); */
+    }
 }
 
 .driver-card__info {
