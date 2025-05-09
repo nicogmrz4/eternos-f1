@@ -22,7 +22,9 @@ onMounted(async () => {
 
 <template>
   <div class="team-cards__container">
-    <TeamCard v-for="teamStats, i in teamsStats" :key="i" v-bind="teamStats" :position="i + 1" />
+    <template v-for="teamStats, i in teamsStats" :key="i">
+      <TeamCard v-if="teamStats.team.name != 'Sin equipo'" v-bind="teamStats" :position="i + 1" />
+    </template>
   </div>
 </template>
 
