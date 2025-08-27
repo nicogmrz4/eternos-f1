@@ -10,7 +10,7 @@
 a {
     font-family: "Chakra Petch", sans-serif;
     font-family: "Work Sans", sans-serif;
-
+    color: #ddddd7
 }
 
 body {
@@ -51,7 +51,7 @@ h3 {
 p {
     line-height: 1.8;
     margin-bottom: .5em;
-    color: #d7dbdd;
+    color: #ddddd7;
 }
 
 .card-text-muted {
