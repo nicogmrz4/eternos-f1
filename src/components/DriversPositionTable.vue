@@ -25,7 +25,10 @@ const globalStore = useGlobalStore();
             />
         </div>
     </Transition>
-</template>
+    <Transition name="change" mode="out-in">
+      <p class="no-data" v-if="driversStats.length === 0">Próximamente se cargaran los datos de los pilotos.</p>
+    </Transition>
+  </template>
 
 <style>
 .driver-cards__container {
@@ -58,5 +61,9 @@ const globalStore = useGlobalStore();
 .change-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.no-data {
+  text-align: center;
 }
 </style>

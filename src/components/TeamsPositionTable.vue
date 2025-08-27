@@ -25,6 +25,7 @@ onMounted(async () => {
     <template v-for="teamStats, i in teamsStats" :key="i">
       <TeamCard v-if="teamStats.team.name != 'Sin equipo'" v-bind="teamStats" :position="i + 1" />
     </template>
+      <p class="no-data" v-if="teamsStats.length === 0">Próximamente se cargaran los datos de las escuderias.</p>
   </div>
 </template>
 
@@ -59,5 +60,9 @@ onMounted(async () => {
 .change-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.no-data {
+  text-align: center;
 }
 </style>
