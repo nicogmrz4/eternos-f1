@@ -27,6 +27,13 @@ const showResult = ref(false);
 const cautionsCount: Ref<number> = ref(0);
 const { drivers, currentSeasonOptions } = storeToRefs(useGlobalStore());
 
+function formatCautions(cautions: Caution[]) {
+    return cautions.map(caution => {
+        caution.reason = caution.reason.replace('\n', '<br>');
+        return caution;        
+    });
+}
+
 function findDriverById(id: number) {
     return drivers.value.find(driver => driver.id === id);
 }
@@ -92,20 +99,18 @@ onMounted(() => {
                         </table>
                         <div v-if="cautions.length > 0">
                             <h4 class="caution-title">Amonestaciones</h4>
-                            <table class="cautions-table">
-                                <thead>
-                                    <th>Piloto</th>
-                                    <th class="caution-reason__reason-col">Motivo</th>
-                                    <th>Puntos</th>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(c, i) in cautions" :key="i">
-                                        <td>{{ findDriverById(c.driver_id)?.name || c.driver_id }}</td>
-                                        <td class="caution-reason__reason-col">{{ c.reason }}</td>
-                                        <td class="caution-reason__points-col">{{ c.points }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                            <div class="caution-card" v-for="(c, i) in cautions" :key="i">
+                                <p class="caution-card__driver">
+                                    <b>Piloto:</b> {{ findDriverById(c.driver_id)?.name || c.driver_id }}
+                                </p>
+                                <p class="caution-card__reason">
+                                    <b>Motivo:</b> {{ c.reason }}
+                                </p>
+                                <p class="caution-card__points">
+                                    <b>Puntos:</b> {{ c.points }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,6 +120,21 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
+.caution-card {
+    border-bottom: 1px solid var(--card-color);
+    padding: 0 .5em;
+    white-space: pre-line
+}
+
+.caution-card > * {
+    margin-bottom: 0;
+}
+
+.caution-card:last-child {
+    border-bottom: none;
+}
+
 .table__container {
     display: flex;
     padding: 0 8px;
