@@ -74,8 +74,8 @@ const seasons = ref([
     }
   },
   {
-    value: 'season-11',
-    label: 'Temporada 11',
+    value: 'season-12',
+    label: 'Temporada 12',
     options: {
       pointsPositionsGained: false,
       polePoints: true,
