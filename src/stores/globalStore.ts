@@ -10,7 +10,7 @@ export const useGlobalStore = defineStore("globalStore", {
     tracks: [] as TrackInterface[],
     teams: [] as TeamInterface[],
     drivers: [] as DriverInterface[],
-    currentSeason: "season-11",
+    currentSeason: "season-12",
     currentSeasonOptions: {},
     lastUpdate: "061120251035", // ddmmyyyyhhmm
   }),

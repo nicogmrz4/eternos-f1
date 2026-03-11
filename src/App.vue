@@ -72,6 +72,16 @@ const seasons = ref([
       racePoints: POINTS_PER_POSITION_V2,
       sprintPoints: POINTS_PER_POSITION_SPRINT
     }
+  },
+  {
+    value: 'season-11',
+    label: 'Temporada 11',
+    options: {
+      pointsPositionsGained: false,
+      polePoints: true,
+      racePoints: POINTS_PER_POSITION_V2,
+      sprintPoints: POINTS_PER_POSITION_SPRINT
+    }
   }
 ]);
 
