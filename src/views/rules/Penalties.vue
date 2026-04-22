@@ -10,8 +10,11 @@
                 penalización según la gravedad de la acción.</p>
         </li>
         <li>
-            <p>Los puntos acumulados se mantendrán durante toda la temporada. Al alcanzar el límite de 12 puntos, el
-                piloto será suspendido automáticamente para la siguiente carrera.</p>
+            <p>(Viejo)Los puntos acumulados se mantendrán durante toda la temporada. Al alcanzar el límite de 12 puntos, el
+                piloto será suspendido automáticamente para la siguiente carrera.</p>            
+        </li>
+        <li>
+            <p>(Nuevo 22/04/20226) Los puntos acumulados se mantendrán durante toda la temporada. Al alcanzar el límite de 9 puntos, el piloto será suspendido automáticamente para la siguiente carrera.</p>
         </li>
         <li>
             <p>Después de llegar a los 12 puntos, el piloto puede volver a ser sancionado si acumula otros 12 puntos
