@@ -12,7 +12,7 @@ export const useGlobalStore = defineStore("globalStore", {
     drivers: [] as DriverInterface[],
     currentSeason: "season-12",
     currentSeasonOptions: {},
-    lastUpdate: "160420262132", // ddmmyyyyhhmm
+    lastUpdate: "220420261858", // ddmmyyyyhhmm
   }),
   actions: {
     toggleShowPositions() {
