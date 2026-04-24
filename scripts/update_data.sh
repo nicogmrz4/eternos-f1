@@ -11,7 +11,7 @@ select file in $files; do
     if [ -n "$file" ]; then
         read -p "Ingrese el ID de la temporada: " seasonId
         if [ -n "$seasonId" ]; then
-            data=$(curl "http://f1eternosjsongen.local/api/seasons/$seasonId/export" &> /dev/null)
+            data=$(curl "http://f1eternosjsongen.local/api/seasons/$seasonId/export")
             echo $data > $PWD/public/data/$file
         fi
 	new_date=$(date +"%d%m%Y%H%M")
