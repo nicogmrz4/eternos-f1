@@ -11,11 +11,13 @@ select file in $files; do
     if [ -n "$file" ]; then
         read -p "Ingrese el ID de la temporada: " seasonId
         if [ -n "$seasonId" ]; then
-            data=$(curl "http://f1eternosjsongen.local/api/seasons/$seasonId/export")
+            data=$(curl "http://f1eternosjsongen.local/api/seasons/$seasonId/export" &> /dev/null)
             echo $data > $PWD/public/data/$file
         fi
-
-        echo $file
+	new_date=$(date +"%d%m%Y%H%M")
+	sed -i "s/lastUpdate: \"[0-9]*\"/lastUpdate: \"$new_date\"/" "src/stores/globalStore.ts" &> /dev/null
+	echo "INFO: Se actualizó \"lastUpdate\" a $new_date"
+        echo "INFO: $file actualzada con exito!"
         break;
     else
         echo "Opción inválida."
